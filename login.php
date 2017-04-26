@@ -1,10 +1,12 @@
 <?php
 
+
+
 spl_autoload_register(function($class){
     include_once ("classes/". $class . ".class.php");
 });
 
-
+session_start();
 if (!empty($_POST)) {
     if (!empty($_POST['userName']) && !empty($_POST['passWord'])) {
 
@@ -18,11 +20,17 @@ if (!empty($_POST)) {
 
             $user->login();
 
+
+
+
+
+
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
     } else $error = "Vul uw gegevens in!";
 }
+
 
 ?><!doctype HTML>
 <html>

@@ -66,6 +66,14 @@ class User
             throw new Exception('Email al genomen');
         }
 
+        $check = $conn->prepare("SELECT * FROM users WHERE userName = :userName");
+        $check->bindValue(':userName', $this->userName);
+        $check->execute();
+        $check->fetch(PDO::FETCH_ASSOC);
+        if ($check->rowCount() !== 0){
+            throw new Exception('Gebruikers naam is al gekozen');
+        }
+
         $hashpassword = passWord_hash($this->getPassWord(),PASSWORD_DEFAULT,$options);
 
         $statement = $conn->prepare("INSERT INTO users (email, userName, passWord) VALUES (:email, :userName, :passWord)");
@@ -74,6 +82,36 @@ class User
         $statement->bindValue(':userName', $this->userName);
         $statement->bindValue(':passWord', $hashpassword);
         return $statement->execute();
+    }
+
+    public function login()
+    {
+        $conn = db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM users WHERE userName = :username");
+        $statement->bindValue(':username', $this->userName);
+        $statement->execute();
+
+        $res = $statement->fetch();
+        if(password_verify($this->getPassWord(), $res['password'])){
+            session_start();
+            $_SESSION['user'] = $this->getEmail();
+            header("Location: index.php");
+            $_SESSION['login'] = true;
+        }else{
+            throw new Exception('Ongeldige gegevens');
+        }
+
+    }
+
+    public function getProfile(){
+
+        $conn = db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM users WHERE email = :email;");
+        $statement->bindValue(':email', $this->email);
+        $statement->execute();
+        return $result = $statement->fetch(PDO::FETCH_ASSOC);
     }
 
 
