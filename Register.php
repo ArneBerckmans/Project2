@@ -71,19 +71,19 @@ catch(Exception $e){
 
         <div>
             <label for="email">Email</label>
-            <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control">
+            <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="email">
             <?php if(isset($error3)) { echo $error3; } ?>
         </div>
 
         <div>
             <label for="username">Gebruikersnaam</label>
-            <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control">
+            <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
             <?php if(isset($error1)) { echo $error1; } ?>
         </div>
 
         <div>
             <label for="password">Paswoord</label>
-            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="text" name="passWord" id="password" class="form-control">
+            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="paswoord">
             <?php if(isset($error2)) { echo $error2; } ?>
         </div>
 
