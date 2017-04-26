@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Project2</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -23,13 +23,20 @@
     <div class="container">
         <form class="login" action="" method="post">
             <legend>Login</legend>
+
             <div>
                 <label for="email">Email</label>
                 <input value="" type="text" name="email" id="email" class="form-control">
             </div>
 
             <div>
-                <label type="text" name="username"></label>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+
+            <div>
+               <label for="password">Password</label>
+                <input type="text" name="password" id="password" class="form-control">
             </div>
 
 
