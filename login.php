@@ -1,6 +1,8 @@
 <?php
 
-
+spl_autoload_register(function($class){
+    include_once ("classes/". $class . ".class.php");
+});
 
 
 ?><!doctype HTML>
@@ -8,7 +10,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -22,22 +24,23 @@
 <body>
     <div class="container">
         <form class="login" action="" method="post">
+
             <legend>Login</legend>
 
             <div>
-                <label for="email">Email</label>
-                <input value="" type="text" name="email" id="email" class="form-control">
-            </div>
-
-            <div>
-                <label for="username">Username</label>
+                <label for="username">Gebruikersnaam</label>
                 <input type="text" name="username" id="username" class="form-control">
             </div>
 
             <div>
-               <label for="password">Password</label>
+               <label for="password">Paswoord</label>
                 <input type="text" name="password" id="password" class="form-control">
             </div>
+
+            <button class="btn" type="submit" >Login</button>
+            <p>OR</p>
+            <a href="register.php">Registreer</a>
+
 
 
         </form>
