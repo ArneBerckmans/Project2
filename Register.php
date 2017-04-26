@@ -20,10 +20,23 @@ try{
 
 
         if($user->save()){
-
+            header("Location: index.php");
         }
         else{
             $error = "Woops";
+        }
+
+        if (empty($userName))
+        {
+            $error1= 'Vul dit veld in!';
+        }
+        if (empty($passWord))
+        {
+            $error2 = 'Vul dit veld in!';
+        }
+        if (empty($email))
+        {
+            $error3 = 'Vul dit veld in!';
         }
     }
 }
@@ -59,21 +72,31 @@ catch(Exception $e){
         <div>
             <label for="email">Email</label>
             <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control">
+            <?php if(isset($error3)) { echo $error3; } ?>
         </div>
 
         <div>
             <label for="username">Gebruikersnaam</label>
             <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control">
+            <?php if(isset($error1)) { echo $error1; } ?>
         </div>
 
         <div>
             <label for="password">Paswoord</label>
             <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="text" name="passWord" id="password" class="form-control">
+            <?php if(isset($error2)) { echo $error2; } ?>
         </div>
 
         <button class="btn" type="submit" >Registreer</button>
         <p>OR</p>
         <a href="login.php">Login</a>
+
+        <?php
+        if (isset($error)): ?>
+
+            <div class="alert"><?php echo $error ?></div>
+
+        <?php endif; ?>
 
 
     </form>
