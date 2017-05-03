@@ -5,6 +5,7 @@ class User
    private $email;
    private $userName;
    private $passWord;
+   private $profileImage = "http://earthharmonyfestival.org/view/modules/imgoing/img/editor/empty-profile.jpg";
 
 
     public function getEmail()
@@ -112,6 +113,16 @@ class User
         $statement->bindValue(':email', $this->email);
         $statement->execute();
         return $result = $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function changeProfilePicture() {
+
+        $conn = db::getInstance();
+
+        $update = $conn->prepare("UPDATE user SET profileImage = :profileImage WHERE email = :email");
+        $update->bindValue(':profileImage', $this->profileImage);
+        $update->bindValue(':email', $this->email);
+        return $update->execute();
     }
 
 

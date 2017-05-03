@@ -43,6 +43,7 @@ if (!empty($_POST)) {
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
 
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
@@ -54,19 +55,21 @@ if (!empty($_POST)) {
 
             <legend>Login</legend>
 
+
+
             <div>
-                <label for="username">Gebruikersnaam</label>
+                <!--<label for="username">Gebruikersnaam</label>-->
                 <input type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
             </div>
 
             <div>
-               <label for="password">Paswoord</label>
+               <!--<label for="password">Paswoord</label>-->
                 <input type="password" name="passWord" id="password" class="form-control" placeholder="paswoord">
             </div>
 
             <button class="btn" type="submit" >Login</button>
-            <p>OR</p>
-            <a href="register.php">Registreer</a>
+            <p>Nog geen acount?</p>
+            <a href="Register.php">Hier registreren!</a>
 
             <?php
             if (isset($error)): ?>

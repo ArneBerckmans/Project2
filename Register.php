@@ -9,35 +9,66 @@ try{
         $email=$_POST['email'];
         $userName = $_POST['userName'];
         $passWord = $_POST['passWord'];
+        $confirmPw = $_POST['confirm'];
+
 
         $user = new User();
         $user->setEmail($email);
         $user->setUserName($userName);
+        $user->setPassWord($passWord);
 
-        if (!empty($passWord)){
-            $user->setPassWord($passWord);
-        }
-
-
-        if($user->save()){
-            header("Location: index.php");
-        }
-        else{
-            $error = "Woops";
-        }
+        /*if (!empty($passWord)){
+        }*/
 
         if (empty($userName))
         {
             $error1= 'Vul dit veld in!';
         }
+
         if (empty($passWord))
         {
             $error2 = 'Vul dit veld in!';
         }
+
+        if (empty($email))
+        {
+
+            $error3 = 'Vul dit veld in!';
+        }
+        if($_POST['passWord']!= $_POST['confirm']) {
+
+            $error4 = "Wachtwoorden zijn niet matchend!";
+
+
+        } else {
+
+            if($user->save()){
+                header("Location: index.php");
+            }
+            else{
+                $error = "Woops";
+            }
+
+        }
+
+
+
+        if (empty($userName))
+        {
+            $error1= 'Vul dit veld in!';
+        }
+
+        if (empty($passWord))
+        {
+            $error2 = 'Vul dit veld in!';
+        }
+
         if (empty($email))
         {
             $error3 = 'Vul dit veld in!';
         }
+
+
     }
 }
 catch(Exception $e){
@@ -58,6 +89,7 @@ catch(Exception $e){
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
 
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
@@ -69,35 +101,41 @@ catch(Exception $e){
 
         <legend>Registreer</legend>
 
+        
+
+
         <div>
-            <label for="email">Email</label>
+            <!--<label for="email">Email</label>-->
             <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="email">
-            <?php if(isset($error3)) { echo $error3; } ?>
         </div>
 
         <div>
-            <label for="username">Gebruikersnaam</label>
+            <!--<label for="username">Gebruikersnaam</label>-->
             <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
-            <?php if(isset($error1)) { echo $error1; } ?>
         </div>
 
         <div>
-            <label for="password">Paswoord</label>
-            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="paswoord">
-            <?php if(isset($error2)) { echo $error2; } ?>
+            <!--<label for="password">wachtwoord</label>-->
+            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="wachtwoord">
+        </div>
+
+        <div>
+            <!--<label for="confirm">Bevestig wachtwoord</label>-->
+            <input value="<?php echo(isset($_POST['confirm']) ? $_POST['confirm'] : ''); ?>" type="password" name="confirm" id="password" class="form-control" placeholder="Bevestig wachtwoord">
         </div>
 
         <button class="btn" type="submit" >Registreer</button>
-        <p>OR</p>
-        <a href="login.php">Login</a>
+        <p>Al een account?</p>
+        <a href="login.php">Hier inloggen!</a>
 
         <?php
         if (isset($error)): ?>
-
             <div class="alert"><?php echo $error ?></div>
-
         <?php endif; ?>
-
+        <?php if(isset($error3)) { echo $error3; } ?>
+        <?php if(isset($error1)) { echo $error1; } ?>
+        <?php if(isset($error2)) { echo $error2; } ?>
+        <?php if(isset($error4)) { echo $error4; } ?>
 
     </form>
 
