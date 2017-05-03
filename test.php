@@ -4,55 +4,80 @@ spl_autoload_register(function($class){
     include_once ("classes/". $class . ".class.php");
 });
 
-try{
-    if(!empty($_POST)){
-        $email=$_POST['email'];
-        $userName = $_POST['userName'];
-        $passWord = $_POST['passWord'];
-        $confirmPw = $_POST['confirm'];
-        //$profileImg = $_POST['image'];
+require_once 'dbconfig.php';
+
+if(isset($_POST['btnsave']))
+{
+    $username = $_POST['userName'];// user name
+    $userjob = $_POST['email'];// user email
+    $passWord = $_POST['passWord'];
+    //$confirmPw = $_POST['confirm'];
+
+    $imgFile = $_FILES['image']['name'];
+    $tmp_dir = $_FILES['image']['tmp_name'];
+    $imgSize = $_FILES['image']['size'];
 
 
-        $user = new User();
-        $user->setEmail($email);
-        $user->setUserName($userName);
-        $user->setPassWord($passWord);
+    if(empty($username)){
+        $errMSG = "Please Enter Username.";
+    }
+    else if(empty($userjob)){
+        $errMSG = "Please Enter Your Job Work.";
+    }
+    else if(empty($imgFile)){
+        $errMSG = "Please Select Image File.";
+    }
+    else if(empty($passWord)){
+        $errMSG = "Please enter password";
+    }
+    else
+    {
+        $upload_dir = 'user_images/'; // upload directory
 
-        /*if (!empty($passWord)){
-        }*/
+        $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
 
-        if($_POST['passWord']!= $_POST['confirm']) {
+        // valid image extensions
+        $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 
-            $error4 = "Wachtwoorden zijn niet matchend!";
+        // rename uploading image
+        $userpic = rand(1000,1000000).".".$imgExt;
 
-
-        } else {
-            if($user->save()){
-
-                $userName = $_POST['userName'];
-                $passWord = $_POST['passWord'];
-                $user = new User();
-                $user->setUserName($userName);
-                $user->setPassWord($passWord);
-
-                $user->login();
-
-                header("Location: index.php");
+        // allow valid image file formats
+        if(in_array($imgExt, $valid_extensions)){
+            // Check file size '5MB'
+            if($imgSize < 5000000)    {
+                move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+            }
+            else{
+                $errMSG = "Sorry, your file is too large.";
             }
         }
+        else{
+            $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        }
+    }
 
 
+    // if no error occured, continue ....
+    if(!isset($errMSG))
+    {
+        $stmt = $conn->prepare('INSERT INTO users(username,password, email, profileImage) VALUES(:uname, :pass, :email, :Pim)');
+        $stmt->bindParam(':uname',$username);
+        $stmt->bindParam(':email',$userjob);
+        $stmt->bindParam(':pass',$passWord);
+        $stmt->bindParam(':Pim',$userpic);
 
-
-
+        if($stmt->execute())
+        {
+            $successMSG = "new record succesfully inserted ...";
+            header("refresh:5;index.php"); // redirects image view page after 5 seconds.
+        }
+        else
+        {
+            $errMSG = "error while inserting....";
+        }
     }
 }
-catch(Exception $e){
-
-    $error = $e->getMessage();
-
-}
-
 
 ?><!doctype HTML>
 <html>
@@ -87,21 +112,13 @@ catch(Exception $e){
 <body>
 <div class="container">
 
-    <legend>Registreer</legend>
 
-
-
-        <!--<img id="blah" src="#" alt="jouw foto." />
-        <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this);">
-        <input type="submit" value="Upload Image" name="submit">
-
-    <form action="upload.php" enctype="multipart/form-data" method="post">
-        <img id="blah" src="#" alt="" />
-
-        <input name="submit" type="submit" value="Upload">
-    </form>-->
 
     <form class="login" method="post" id="form1" runat="server" action="upload.php" enctype="multipart/form-data">
+
+        <legend>Registreer</legend>
+
+        <input name="image" type="file"  onchange="readURL(this);">
 
         <div>
             <!--<label for="email">Email</label>-->

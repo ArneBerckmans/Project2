@@ -68,8 +68,8 @@ if (!empty($_POST)) {
             </div>
 
             <button class="btn" type="submit" >Login</button>
-            <p>Nog geen acount?</p>
-            <a href="Register.php">Hier registreren!</a>
+            <p>Nog geen acount? <a href="Register.php">Hier registreren!</a></p>
+
 
             <?php
             if (isset($error)): ?>

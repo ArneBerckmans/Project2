@@ -51,6 +51,7 @@ class User
         $this->passWord = $p_passWord;
     }
 
+
     public function save ()
     {
        $conn = db::getInstance();
@@ -115,15 +116,16 @@ class User
         return $result = $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function changeProfilePicture() {
+
+
+    /*public function changeProfilePicture() {
 
         $conn = db::getInstance();
 
-        $update = $conn->prepare("UPDATE user SET profileImage = :profileImage WHERE email = :email");
-        $update->bindValue(':profileImage', $this->profileImage);
-        $update->bindValue(':email', $this->email);
-        return $update->execute();
-    }
+        $sql = $conn -> prepare("INSERT INTO users (profileImage) VALUES (:profileImage)");
+        $sql ->bindValue(":profileImage", $this->profileImage);
+        return $sql -> execute();
+    }*/
 
 
 
