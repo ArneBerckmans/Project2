@@ -118,14 +118,15 @@ class User
 
 
 
-    /*public function changeProfilePicture() {
+    public function changeProfilePicture() {
 
-        $conn = db::getInstance();
+       $conn = db::getInstance();
 
-        $sql = $conn -> prepare("INSERT INTO users (profileImage) VALUES (:profileImage)");
-        $sql ->bindValue(":profileImage", $this->profileImage);
-        return $sql -> execute();
-    }*/
+            $update = $conn->prepare("UPDATE users SET profileImage = :profileImage WHERE email = :email");
+            $update->bindValue(':profileImage', $this->profileImage);
+            $update->bindValue(':email', $this->email);
+            return $update->execute();
+    }
 
 
 

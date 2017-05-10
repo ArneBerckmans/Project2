@@ -1,83 +1,94 @@
 <?php
-
 spl_autoload_register(function($class){
     include_once ("classes/". $class . ".class.php");
 });
 
-require_once 'dbconfig.php';
-
-if(isset($_POST['btnsave']))
-{
-    $username = $_POST['userName'];// user name
-    $userjob = $_POST['email'];// user email
-    $passWord = $_POST['passWord'];
-    //$confirmPw = $_POST['confirm'];
-
-    $imgFile = $_FILES['image']['name'];
-    $tmp_dir = $_FILES['image']['tmp_name'];
-    $imgSize = $_FILES['image']['size'];
+try{
+    if(!empty($_POST)){
+        $email=$_POST['email'];
+        $userName = $_POST['userName'];
+        $passWord = $_POST['passWord'];
+        $confirmPw = $_POST['confirm'];
+        //$profileImg = $_POST['image'];
 
 
-    if(empty($username)){
-        $errMSG = "Please Enter Username.";
-    }
-    else if(empty($userjob)){
-        $errMSG = "Please Enter Your Job Work.";
-    }
-    else if(empty($imgFile)){
-        $errMSG = "Please Select Image File.";
-    }
-    else if(empty($passWord)){
-        $errMSG = "Please enter password";
-    }
-    else
-    {
-        $upload_dir = 'user_images/'; // upload directory
+        $user = new User();
+        $user->setEmail($email);
+        $user->getUserName($userName);
+        $user->setPassWord($passWord);
 
-        $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+        /*if (!empty($passWord)){
+        }*/
 
-        // valid image extensions
-        $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+        if($_POST['passWord']!= $_POST['confirm']) {
 
-        // rename uploading image
-        $userpic = rand(1000,1000000).".".$imgExt;
+            $error4 = "Wachtwoorden zijn niet matchend!";
 
-        // allow valid image file formats
-        if(in_array($imgExt, $valid_extensions)){
-            // Check file size '5MB'
-            if($imgSize < 5000000)    {
-                move_uploaded_file($tmp_dir,$upload_dir.$userpic);
-            }
-            else{
-                $errMSG = "Sorry, your file is too large.";
+
+        } else {
+            if($user->save()){
+
+                $userName = $_POST['userName'];
+                $passWord = $_POST['passWord'];
+                $user = new User();
+                $user->setUserName($userName);
+                $user->setPassWord($passWord);
+
+                $user->login();
+
+                header("Location: index.php");
             }
         }
-        else{
-            $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        }
+
+
+
+
+
     }
 
+    if(!empty($_FILES) && isset($_POST['addPicture'])) {
 
-    // if no error occured, continue ....
-    if(!isset($errMSG))
-    {
-        $stmt = $conn->prepare('INSERT INTO users(username,password, email, profileImage) VALUES(:uname, :pass, :email, :Pim)');
-        $stmt->bindParam(':uname',$username);
-        $stmt->bindParam(':email',$userjob);
-        $stmt->bindParam(':pass',$passWord);
-        $stmt->bindParam(':Pim',$userpic);
+        $file = $currentUser['userID'];
 
-        if($stmt->execute())
-        {
-            $successMSG = "new record succesfully inserted ...";
-            header("refresh:5;index.php"); // redirects image view page after 5 seconds.
+        $imageType = pathinfo(basename($_FILES["profile_picture"]["name"]), PATHINFO_EXTENSION);
+        $targetFile = "uploads/profile_picture/" . $file . "." . $imageType;
+
+        try {
+            if ($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg" && $imageType != "gif") {
+                throw new Exception('This is not an image');
+            }
+
+            if (!move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $targetFile)) {
+                throw new Exception("Error uploading image");
+            }
+
+            $imageUrl = "uploads/profile_picture/".$currentUser['userID']. "." .$imageType;
+            try{
+                $user2 = new User();
+                $user2->setEmail($currentUser['email']);
+                $user2->setImageUrl($imageUrl);
+                if ($user2->changeProfilePicture()){
+                    $currentUser = $user->getProfile();
+                    $feedback2 = "Saved";
+                }
+            }
+            catch (Exception $e) {
+                $error2 = $e->getMessage();
+            }
         }
-        else
-        {
-            $errMSG = "error while inserting....";
+        catch (Exception $e){
+            $error2 = $e->getMessage();
         }
+
+
     }
 }
+catch(Exception $e){
+
+    $error = $e->getMessage();
+
+}
+
 
 ?><!doctype HTML>
 <html>
@@ -112,13 +123,25 @@ if(isset($_POST['btnsave']))
 <body>
 <div class="container">
 
+    <legend>Registreer</legend>
 
 
-    <form class="login" method="post" id="form1" runat="server" action="upload.php" enctype="multipart/form-data">
 
-        <legend>Registreer</legend>
+    <!--<img id="blah" src="#" alt="jouw foto." />
+    <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this);">
+    <input type="submit" value="Upload Image" name="submit">
 
-        <input name="image" type="file"  onchange="readURL(this);">
+<form action="upload.php" enctype="multipart/form-data" method="post">
+    <img id="blah" src="#" alt="" />
+
+    <input name="submit" type="submit" value="Upload">
+</form>-->
+
+    <form class="login addPicture" method="post" id="form1" runat="server" action="test.php" enctype="multipart/form-data">
+
+        <img id="blah" src="#" alt="jouw foto." />
+        <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this);">
+
 
         <div>
             <!--<label for="email">Email</label>-->

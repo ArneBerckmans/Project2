@@ -15,7 +15,7 @@ try{
 
         $user = new User();
         $user->setEmail($email);
-        $user->setUserName($userName);
+        $user->getUserName($userName);
         $user->setPassWord($passWord);
 
         /*if (!empty($passWord)){

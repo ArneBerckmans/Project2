@@ -7,3 +7,150 @@ body{
     font-family: Quicksand;
 }
 
+html, body{
+    height: 100%;
+}
+
+.navbar{
+    margin-left: 35%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header{
+    position: fixed;
+    background-color: #1b6d85;
+    width: 100%;
+    font-size:2em;
+    overflow: hidden;
+    display: block;
+    z-index: 100;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:50px;
+    width: 100%;
+}
+
+.footer{
+    background-color: #1b6d85;
+    width:50%;
+}
+
+
+
+.menu{
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 40%;
+}
+
+.bar1, .bar3{
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+.bar2{
+    width: 25px;
+    height: 5px;
+
+    background-color: #333;
+    margin: 6px 10px 0;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+
+.circle{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: #4cae4c;
+    border: 5px solid white;
+    left: 50%;
+    margin-left: -50px;
+    position: absolute;
+    bottom: 0;
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
+.myDIV{
+    text-align: center;
+
+}
+
+.filter{
+   position: absolute;
+
+    top: 15%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+}
+
+.F1, .F2, .F3, .F4, .F5{
+    border: none;
+    color: snow;
+    padding: 15px 15px 15px 15px;
+}
+
+.F2, .F3, .F4{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.F2, .F3, .F4, .F5 {
+    background-color: #DBDB00;
+}
+
+.F1{
+    background-color: #DB0000;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.F5{
+    border-radius: 0px 20px 20px 0px;
+}
+
+.active{
+    background-color: #d43f3a;
+}
+
+/*.arrow-up {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-left: 10px solid #DB0000;
+    margin-left: 50px;
+}*/
+
+

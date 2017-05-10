@@ -1,6 +1,4 @@
 <?php
-
-
 spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".class.php");
 });
@@ -31,11 +29,11 @@ if (!isset($_SESSION['login'])){
 <body>
 <header>
     <nav class="navbar">
-    <!--<ul class="nav">
-        <li><a class="profile" href="profile.php">Profile</a></li>
-        <li><a class="logout" href="logout.php">Logout</a></li>
-    </ul>-->
-     <img src="#" alt="logo">
+        <!--<ul class="nav">
+            <li><a class="profile" href="profile.php">Profile</a></li>
+            <li><a class="logout" href="logout.php">Logout</a></li>
+        </ul>-->
+        <img src="#" alt="logo">
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -51,20 +49,12 @@ if (!isset($_SESSION['login'])){
 </header>
 <main>
 
-    <div class="filter">
-        <button class="F1">Filter</button>
-        <!--<p class="arrow-up"></p>-->
-        <button class="F2 clickable2">Alles</button>
-        <button class="F3 clickable2">Friends</button> <!--PLACEHOLDER-->
-        <button class="F4 clickable2">Instagram</button> <!--PLACEHOLDER-->
-        <button class="F5 clickable2">Twitter</button> <!--PLACEHOLDER-->
-    </div>
-
+    
 
 </main>
 <footer class="bottom">
     <a href="index.php" class="home footer clickable"><img src="#"></a>
-    <a href="mood.php" class="circle footer clickable"><img src="#"></a>
+    <a href="mood.php" class="moodLink circle footer clickable"><img src="#"></a>
     <a href="#" class="hist footer clickable"><img src="#"></a>
 </footer>
 </body>
