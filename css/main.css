@@ -143,6 +143,27 @@ header{
     background-color: #d43f3a;
 }
 
+
+#slider{
+
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.jcs{
+    border-width: medium;
+}
+
+.moodReady{
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /*.arrow-up {
     width: 0;
     height: 0;
