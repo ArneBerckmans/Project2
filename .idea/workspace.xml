@@ -18,8 +18,8 @@
       <file leaf-file-name="mood.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mood.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="45" column="74" lean-forward="false" selection-start-line="45" selection-start-column="74" selection-end-line="45" selection-end-column="74" />
+            <state relative-caret-position="274">
+              <caret line="45" column="108" lean-forward="false" selection-start-line="45" selection-start-column="108" selection-end-line="45" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="156" column="24" lean-forward="false" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="24" />
+              <caret line="156" column="23" lean-forward="true" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -266,12 +266,12 @@
       <workItem from="1492604759818" duration="4621000" />
       <workItem from="1493192503635" duration="26619000" />
       <workItem from="1493797584710" duration="27676000" />
-      <workItem from="1494949605810" duration="16130000" />
+      <workItem from="1494949605810" duration="21156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75046000" />
+    <option name="totallyTimeSpent" value="80072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -670,15 +670,15 @@
     <entry file="file://$PROJECT_DIR$/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="156" column="24" lean-forward="false" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="24" />
+          <caret line="156" column="23" lean-forward="true" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mood.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="45" column="74" lean-forward="false" selection-start-line="45" selection-start-column="74" selection-end-line="45" selection-end-column="74" />
+        <state relative-caret-position="274">
+          <caret line="45" column="108" lean-forward="false" selection-start-line="45" selection-start-column="108" selection-end-line="45" selection-end-column="108" />
           <folding />
         </state>
       </provider>

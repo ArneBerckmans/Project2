@@ -8,6 +8,7 @@ if (!isset($_SESSION['login'])){
     header('location: logout.php');
 }
 
+//$somevar = $_GET["uid"];
 
 
 
@@ -41,15 +42,17 @@ if (!isset($_SESSION['login'])){
                   slide: function (ui, value) {
                       var colors = ['green', 'red', 'blue', 'yellow', 'pink', 'black'];
                       var color = colors[parseInt(value / 60)];
-                      ui.find('.jcs').css({'border-color' : color });
-                      ui.find('.jcs-indicator').css({'background' : color });
-                      ui.find('.jcs-value ').css({'background' : color });
+                      ui.find('.jcs').css({'border-color' : color, 'border-width': '50px' });
+                      ui.find('.jcs-indicator').css({'background' : color, 'height': '80px', 'width': '80px' });
+                      ui.find('.jcs-value ').css({'background' : color, 'top': '15%', 'left': '17%' });
                       /*ui.next().css({
                           'background': 'linear-gradient(' + value +
                           'deg, white, cornsilk, white)'
                       });*/
+
                   }
               });
+              //window.location.href= "mood.php?uid=" .color;
           });
       });
 
@@ -76,7 +79,7 @@ if (!isset($_SESSION['login'])){
     </nav>
 </header>
 <main>
-
+<!--use form input to get data from java to php with get_request -->
 <div id="slider"></div>
 <button class="moodReady">Ready</button>
 </main>
