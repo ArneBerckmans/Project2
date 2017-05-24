@@ -1,12 +1,41 @@
 <?php
 
 spl_autoload_register(function($class){
-    include_once ("classes/". $class . ".class.php");
+    include_once ("classes/". $class . ".php");
 });
 
-try{
+    try{
+        if (!empty($_POST)){
+            $email = $_POST['email'];
+            $userName = $_POST['userName'];
+            $passWord = $_POST['passWord'];
+            $confirm = $_POST['confirm'];
+
+            $user = new User();
+            $user->setEmail($email);
+            $user->setUserName($userName);
+
+            if (!empty($passWord)){
+                $user->setpassWord($passWord);
+            }
+
+            if ($_POST['confirm'] != $_POST['passWord']){
+                $error4 = "Wachtwoorden zijn niet matchend";
+            }
+            else{
+               $user->save();
+               header("Location: home.php");
+                //$user->login();
+            }
+
+        }
+    }catch (Exception $e) {
+        $error = $e->getMessage();
+    }
+
+/*try{
     if(!empty($_POST)){
-        $email=$_POST['email'];
+        $email= $_POST['email'];
         $userName = $_POST['userName'];
         $passWord = $_POST['passWord'];
         $confirmPw = $_POST['confirm'];
@@ -15,11 +44,10 @@ try{
 
         $user = new User();
         $user->setEmail($email);
-        $user->getUserName($userName);
+        $user->setUserName($userName);
         $user->setPassWord($passWord);
 
-        /*if (!empty($passWord)){
-        }*/
+
 
         if($_POST['passWord']!= $_POST['confirm']) {
 
@@ -37,22 +65,16 @@ try{
 
                 $user->login();
 
-                header("Location: index.php");
+                //header("Location: index.php");
             }
         }
-
-
-
-
-
     }
 }
 catch(Exception $e){
 
     $error = $e->getMessage();
 
-}
-
+}*/
 
 ?><!doctype HTML>
 <html>
@@ -89,8 +111,6 @@ catch(Exception $e){
 
     <legend>Registreer</legend>
 
-
-
         <!--<img id="blah" src="#" alt="jouw foto." />
         <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this);">
         <input type="submit" value="Upload Image" name="submit">
@@ -101,7 +121,7 @@ catch(Exception $e){
         <input name="submit" type="submit" value="Upload">
     </form>-->
 
-    <form class="login" method="post" id="form1" runat="server" action="upload.php" enctype="multipart/form-data">
+    <form class="login" method="post" id="form1" runat="server" action="Register.php" enctype="multipart/form-data">
 
         <div>
             <!--<label for="email">Email</label>-->

@@ -1,17 +1,20 @@
 <?php
 
-
 spl_autoload_register(function ($class) {
-    include_once("classes/" . $class . ".class.php");
+    include_once("classes/" . $class . ".php");
 });
 
 session_start();
-if (!isset($_SESSION['login'])){
+if (!isset($_SESSION['user'])) {
     header('location: logout.php');
 }
 
-
-
+    $user = new User();
+    $user->setUserName($_SESSION['user']);
+    $currentUser = $user->getProfile();
+    $userName = $user->getUserName();
+    $userID = $currentUser['userID'];
+    //echo $userID; vind juiste ID
 
 ?><!doctype HTML>
 <html>
@@ -35,7 +38,7 @@ if (!isset($_SESSION['login'])){
         <li><a class="profile" href="profile.php">Profile</a></li>
         <li><a class="logout" href="logout.php">Logout</a></li>
     </ul>-->
-     <img src="#" alt="logo">
+     <img src="img/logo.png" class="logo" alt="logo">
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -55,7 +58,7 @@ if (!isset($_SESSION['login'])){
         <button class="F1">Filter</button>
         <!--<p class="arrow-up"></p>-->
         <button class="F2 clickable2">Alles</button>
-        <button class="F3 clickable2">Friends</button> <!--PLACEHOLDER-->
+        <button class="F3 clickable2">Moodi</button> <!--PLACEHOLDER-->
         <button class="F4 clickable2">Instagram</button> <!--PLACEHOLDER-->
         <button class="F5 clickable2">Twitter</button> <!--PLACEHOLDER-->
     </div>
@@ -63,7 +66,7 @@ if (!isset($_SESSION['login'])){
 
 </main>
 <footer class="bottom">
-    <a href="index.php" class="home footer clickable"><img src="#"></a>
+    <a href="home.php.php" class="home footer clickable"><img src="#"></a>
     <a href="mood.php" class="circle footer clickable"><img src="#"></a>
     <a href="#" class="hist footer clickable"><img src="#"></a>
 </footer>

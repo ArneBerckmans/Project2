@@ -1,35 +1,28 @@
 <?php
 
-
-
-spl_autoload_register(function($class){
-    include_once ("classes/". $class . ".class.php");
+spl_autoload_register(function ($class) {
+    include_once("classes/". $class . ".php");
 });
 
-session_start();
-if (!empty($_POST)) {
-    if (!empty($_POST['userName']) && !empty($_POST['passWord'])) {
+    if(!empty($_POST)){
+        if(!empty($_POST['userName']) && !empty($_POST['passWord'])){
+            try{
 
-        try {
+                $userName = $_POST['userName'];
+                $passWord = $_POST['passWord'];
+                $user = new User();
+                $user->setUserName($userName);
+                $user->setpassWord($passWord);
 
-            $userName = $_POST['userName'];
-            $passWord = $_POST['passWord'];
-            $user = new User();
-            $user->setUserName($userName);
-            $user->setPassWord($passWord);
-
-            $user->login();
-
-
-
-
-
-
-        } catch (Exception $e) {
-            $error = $e->getMessage();
+                $user->login();
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
         }
-    } else $error = "Vul uw gegevens in!";
-}
+        else{
+            $error = "Vul je gegevens in!";
+        }
+    }
 
 
 ?><!doctype HTML>
@@ -55,11 +48,9 @@ if (!empty($_POST)) {
 
             <legend>Login</legend>
 
-
-
             <div>
                 <!--<label for="username">Gebruikersnaam</label>-->
-                <input type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
+                <input type="text" value="<?php echo(isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
             </div>
 
             <div>

@@ -1,15 +1,36 @@
 <?php
 spl_autoload_register(function ($class) {
-    include_once("classes/" . $class . ".class.php");
+    include_once("classes/" . $class . ".php");
 });
 
 session_start();
-if (!isset($_SESSION['login'])){
+if (!isset($_SESSION['user'])) {
     header('location: logout.php');
 }
 
-//$somevar = $_GET["uid"];
+$user = new User();
+$user->setUserName($_SESSION['user']);
+$currentUser = $user->getProfile();
+$userName = $user->getUserName();
+$userID = $currentUser['userID'];
+//echo $userID;
 
+//Mood ophalen
+
+        if(isset($_POST['ready'])){
+            $mood = new post();
+            $moodColor = $_POST['mood'];
+            $statementMood = $mood->getMood($moodColor);
+
+            while ($row = $statementMood->fetch(PDO::FETCH_ASSOC)){
+                $moodChoice = $row['moodID'];
+                //echo $moodID;
+            }
+            $moodID = $_GET['moodID'];
+            $userID = $currentUser['userID'];
+            $statementPost = $mood -> postMood();
+            header('location: index.php');
+        }
 
 
 ?><!doctype HTML>
@@ -17,7 +38,7 @@ if (!isset($_SESSION['login'])){
 
 <head>
     <meta charset="utf-8">
-    <title>Welcome</title>
+    <title>Kies je mood</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -43,17 +64,18 @@ if (!isset($_SESSION['login'])){
                       var colors = ['green', 'red', 'blue', 'yellow', 'pink', 'black'];
                       var color = colors[parseInt(value / 60)];
                       ui.find('.jcs').css({'border-color' : color, 'border-width': '50px' });
-                      ui.find('.jcs-indicator').css({'background' : color, 'height': '80px', 'width': '80px' });
+                      ui.find('.jcs-indicator').css({'background' : color});
                       ui.find('.jcs-value ').css({'background' : color, 'top': '15%', 'left': '17%' });
-                      /*ui.next().css({
-                          'background': 'linear-gradient(' + value +
-                          'deg, white, cornsilk, white)'
-                      });*/
+                      //document.getElementById('hiddenValue').value = value;
+                      $('.data').val(color);
 
                   }
               });
               //window.location.href= "mood.php?uid=" .color;
           });
+          function setInputValue(ui, val) {
+              document.getElementById(slider).setAttribute('value', val);
+          }
       });
 
 
@@ -64,7 +86,7 @@ if (!isset($_SESSION['login'])){
 <header>
     <nav class="navbar">
 
-        <img src="#" alt="logo">
+        <img src="img/logo.png" class="logo" alt="logo">
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -80,11 +102,17 @@ if (!isset($_SESSION['login'])){
 </header>
 <main>
 <!--use form input to get data from java to php with get_request -->
-<div id="slider"></div>
-<button class="moodReady">Ready</button>
+
+    <div id="slider"></div>
+
+
+    <form class="input" action="mood.php" method="post">
+        <input id="hiddenValue" type="hidden" class="data" name="mood" value="">
+        <button class="moodReady" type="submit" name="ready">Ready</button>
+    </form>
 </main>
 <footer class="bottom">
-    <a href="index.php" class="home footer clickable"><img src="#"></a>
+    <a href="home.php" class="home footer clickable"><img src="#"></a>
     <a href="mood.php" class="moodLink circle footer clickable"><img src="#"></a>
     <a href="#" class="hist footer clickable"><img src="#"></a>
 </footer>
