@@ -13,24 +13,40 @@ $user->setUserName($_SESSION['user']);
 $currentUser = $user->getProfile();
 $userName = $user->getUserName();
 $userID = $currentUser['userID'];
-//echo $userID;
 
 //Mood ophalen
-
+/*
         if(isset($_POST['ready'])){
-            $mood = new post();
+            $mood = new Post();
             $moodColor = $_POST['mood'];
             $statementMood = $mood->getMood($moodColor);
 
             while ($row = $statementMood->fetch(PDO::FETCH_ASSOC)){
-                $moodChoice = $row['moodID'];
-                //echo $moodID;
+                $moodID = $row['moodID'];
+                //echo $moodID; toont enkel met method post
             }
             $moodID = $_GET['moodID'];
             $userID = $currentUser['userID'];
             $statementPost = $mood -> postMood();
-            header('location: index.php');
-        }
+            //header('location: home.php');
+        }*/
+
+if (isset($_POST['ready'])) {
+    $mood = new Post();
+    $moodColor = $_POST['mood'];
+    $statementMood = $mood->getMood($moodColor); //connects the color with an ID
+
+    while ($row = $statementMood->fetch(PDO::FETCH_ASSOC)) {
+        $moodID = $row['moodID'];
+
+    }
+    //$moodID = $_GET['moodID'];
+    $userID = $currentUser['userID'];
+    //echo $userID;
+    //echo $moodID;
+    $statementPost = $mood->postMood($moodID, $userID); //put the emotion in the database.
+    header('location: home.php');
+}
 
 
 ?><!doctype HTML>
@@ -61,7 +77,7 @@ $userID = $currentUser['userID'];
                   radius: 200,
                   labelSuffix: "°",
                   slide: function (ui, value) {
-                      var colors = ['green', 'red', 'blue', 'yellow', 'pink', 'black'];
+                      var colors = ['red', 'orange', 'yellow', 'green', 'purple', 'blue'];
                       var color = colors[parseInt(value / 60)];
                       ui.find('.jcs').css({'border-color' : color, 'border-width': '50px' });
                       ui.find('.jcs-indicator').css({'background' : color});
@@ -112,8 +128,8 @@ $userID = $currentUser['userID'];
     </form>
 </main>
 <footer class="bottom">
-    <a href="home.php" class="home footer clickable"><img src="#"></a>
-    <a href="mood.php" class="moodLink circle footer clickable"><img src="#"></a>
+    <a href="home.php" class="home2 footer clickable"><img src="#"></a>
+    <a href="mood.php" class="moodLink circle footer2 clickable"><img src="#"></a>
     <a href="#" class="hist footer clickable"><img src="#"></a>
 </footer>
 

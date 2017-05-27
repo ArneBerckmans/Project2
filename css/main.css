@@ -12,7 +12,21 @@ html, body{
 }
 
 .home{
-    background-color: #DB0000;
+    display: block;
+    background-color: #ed4850;
+    margin: auto;
+}
+
+.logoHome{
+    width: 70%;
+    height: 70%;
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
+.moodiTitle{
+    margin-left: 33%;
+    color: #ffffff;
 }
 
 .logo{
@@ -51,10 +65,14 @@ header{
 }
 
 .footer{
-    background-color: #1b6d85;
+    background-color: #ed4850;
     width:50%;
 }
 
+.footer2{
+    background-color: #ed4850;
+    width:50%;
+}
 
 
 .menu{
@@ -92,7 +110,7 @@ header{
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    background-color: #4cae4c;
+    background-color: #ffd074;
     border: 5px solid white;
     left: 50%;
     margin-left: -50px;
@@ -138,7 +156,7 @@ header{
 }
 
 .F2, .F3, .F4, .F5 {
-    background-color: #DBDB00;
+    background-color: #f9ddaa;
 }
 
 .F1{
@@ -151,9 +169,16 @@ header{
 }
 
 .active{
-    background-color: #d43f3a;
+    background-color: #f27777;
 }
 
+.active2{
+    background-color: #ffd074;
+}
+
+.active3{
+    background-color: #f9ddaa;
+}
 
 #slider{
 

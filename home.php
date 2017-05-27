@@ -16,6 +16,32 @@ if (!isset($_SESSION['user'])) {
     $userID = $currentUser['userID'];
     //echo $userID; vind juiste ID
 
+
+//posts ophalen
+
+     $arrayUser = array();
+     $arrayMood = array();
+
+    $filter = new Post();
+    $statementFilter = $filter->getAll();
+
+/*    while ($row = $statementFilter->fetch(PDO::FETCH_ASSOC)){
+        $arrayUser[] = $row['username'];
+        $arrayMood[]= $row['moods'];
+        //echo $arrayMood;
+    }*/
+
+
+/*$conn = db::getInstance();
+$statementFilter = $conn->prepare("SELECT * FROM postsmoodi");
+$statementFilter->execute();
+$users = $statementFilter->fetchAll();
+foreach ($users as $u){
+    echo $u['moodID'];
+}*/
+
+
+
 ?><!doctype HTML>
 <html>
 
@@ -32,12 +58,9 @@ if (!isset($_SESSION['user'])) {
     <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-<header>
+<!--<header>
     <nav class="navbar">
-    <!--<ul class="nav">
-        <li><a class="profile" href="profile.php">Profile</a></li>
-        <li><a class="logout" href="logout.php">Logout</a></li>
-    </ul>-->
+
      <img src="img/logo.png" class="logo" alt="logo">
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
@@ -51,7 +74,7 @@ if (!isset($_SESSION['user'])) {
             <li><a class="logout" href="logout.php">Logout</a></li>
         </ul>
     </nav>
-</header>
+</header>-->
 <main>
 
     <div class="filter">
@@ -64,10 +87,43 @@ if (!isset($_SESSION['user'])) {
     </div>
 
 
+<div class="posts">
+    <?php
+       /* foreach ($arrayUser as $value){
+            //echo $value;
+
+        }
+        foreach ($arrayMood as $moodValue){
+            echo $moodValue;
+        }*/
+
+    while ($row = $statementFilter->fetch(PDO::FETCH_ASSOC)):
+        $arrayUser[] = $row['username'];
+        $arrayMood[]= $row['moods'];
+        //echo $arrayMood;
+
+    ?>
+    <div class="usernames">
+        <p><?php foreach ($arrayUser as $value){
+                echo $value;
+            } ?></p>
+    </div>
+    <div class="moods">
+        <p><?php  foreach ($arrayMood as $moodValue){
+                echo $moodValue;
+            } ?></p>
+
+    </div>
+
+
+    <?php endwhile; ?>
+
+</div>
+
 </main>
 <footer class="bottom">
-    <a href="home.php.php" class="home footer clickable"><img src="#"></a>
-    <a href="mood.php" class="circle footer clickable"><img src="#"></a>
+    <a href="home.php" class="home2 footer clickable"><img src="#"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="#"></a>
     <a href="#" class="hist footer clickable"><img src="#"></a>
 </footer>
 </body>

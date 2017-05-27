@@ -20,11 +20,12 @@ function myFunction(x) {
 };
 
 $(document).on("click",".clickable2",function(){
-    if (!$(this).hasClass("active")) {
-        $("button.clickable2").removeClass("active");
-        $(this).addClass("active");
+    if (!$(this).hasClass("active2")) {
+        $("button.clickable2").removeClass("active2");
+        $(this).addClass("active2");
     }
 });
+
 
 /*$(document).on("click",".clickable",function(){
     if (!$(this).hasClass("active")) {
@@ -66,37 +67,16 @@ $(function() {
     });
 });
 
-/*var slider = $('#slider').CircularSlider({
-
-    radius: 75,
-    innerCircleRatio: '0.5',
-    handleDist: 100,
-    min: 0,
-    max: 359,
-    value: 0,
-    clockwise: true,
-    labelSuffix: "",
-    labelPrefix: "",
-    shape: "Circle",
-    touch: true,
-    animate: true,
-    animateDuration : 360,
-    selectable: false,
-    slide: function(ui, value) {
-        var colors = ['deeppink', 'seagreen', 'deepskyblue', 'coral', 'cadetblue', 'olive', 'chocolate',
-            'yellowgreen', 'cornflowerblue', 'slategrey', 'salmon', 'brown', 'darkgoldenrod', 'dimgrey'];
-        var color = colors[parseInt(value / 26)];
-        ui.find('.jcs').css({'border-color' : color });
-        ui.find('.jcs-indicator').css({'background' : color });
-    },
-    onSlideEnd: function(ui, value) {},
-    formLabel: undefined
-
+$(function() {
+    var href = window.location.href;
+    $('footer2 a').each(function(e,i) {
+        if (href.indexOf($(this).attr('href')) >= 0) {
+            $(this).addClass('active3');
+        }
     });
+});
 
-function setValue() {
-    
-}*/
+
 
 
 

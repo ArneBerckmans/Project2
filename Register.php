@@ -25,7 +25,7 @@ spl_autoload_register(function($class){
             else{
                $user->save();
                header("Location: home.php");
-                //$user->login();
+                $user->login();
             }
 
         }

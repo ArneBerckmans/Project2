@@ -1,6 +1,6 @@
 <?php
 
-class post{
+class Post{
 
     private $userID;
     private $moodID;
@@ -46,13 +46,25 @@ class post{
         return $statementMood;
     }
 
-    public function postMood(){
+    public function postMood($moodID, $userID){
         $conn = db::getInstance();
 
-        $statementPost = $conn->prepare("INSERT INTO postsmoodi (userID, moodID) VALUES ('', :userID, :moodID)");
-        $statementPost ->bindValue(':userID', $this->userID);
-        $statementPost->bindValue(':moodID', $this->moodID);
+        $statementPost = $conn->prepare("INSERT INTO postsmoodi (userID, moodID) VALUES (:userID, :moodID)");
+        $statementPost ->bindValue(':userID', $userID);
+        $statementPost->bindValue(':moodID', $moodID);
         return $statementPost->execute();
+    }
+
+    public function getAll()
+    {
+        $conn = db::getInstance();
+
+        //$statementFilter = $conn->prepare("SELECT * FROM postmoodi INNER JOIN moods ON postmoodi.moodID = moods.moodID INNER JOIN users ON postmoodi.userID = users.userID");
+        $statementFilter = $conn->prepare("SELECT * FROM postsmoodi INNER JOIN moods ON postsmoodi.moodID = moods.moodID INNER JOIN users ON postsmoodi.userID = users.userID");
+        $statementFilter->execute();
+        //$users = $statementFilter->fetchAll();
+        //$statementFilter->fetchAll();
+        return $statementFilter;
     }
 
 
