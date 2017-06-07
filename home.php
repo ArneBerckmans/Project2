@@ -19,8 +19,8 @@ if (!isset($_SESSION['user'])) {
 
 //posts ophalen
 
-     $arrayUser = array();
-     $arrayMood = array();
+     $arrayUser = "";
+     $arrayMood = "";
 
     $filter = new Post();
     $statementFilter = $filter->getAll();
@@ -58,7 +58,7 @@ foreach ($users as $u){
     <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-<!--<header>
+<header>
     <nav class="navbar">
 
      <img src="img/logo.png" class="logo" alt="logo">
@@ -74,8 +74,12 @@ foreach ($users as $u){
             <li><a class="logout" href="logout.php">Logout</a></li>
         </ul>
     </nav>
-</header>-->
+</header>
 <main>
+<div id="">
+
+</div>
+
 
     <div class="filter">
         <button class="F1">Filter</button>
@@ -85,6 +89,7 @@ foreach ($users as $u){
         <button class="F4 clickable2">Instagram</button> <!--PLACEHOLDER-->
         <button class="F5 clickable2">Twitter</button> <!--PLACEHOLDER-->
     </div>
+
 
 
 <div class="posts">
@@ -98,23 +103,20 @@ foreach ($users as $u){
         }*/
 
     while ($row = $statementFilter->fetch(PDO::FETCH_ASSOC)):
-        $arrayUser[] = $row['username'];
-        $arrayMood[]= $row['moods'];
+        $arrayUser = $row['username'];
+        $arrayMood= $row['moods'];
         //echo $arrayMood;
 
     ?>
+        <div class="actual">
     <div class="usernames">
-        <p><?php foreach ($arrayUser as $value){
-                echo $value;
-            } ?></p>
+        <p><?php echo $arrayUser; ?></p>
     </div>
     <div class="moods">
-        <p><?php  foreach ($arrayMood as $moodValue){
-                echo $moodValue;
-            } ?></p>
+        <p><?php echo $arrayMood; ?></p>
 
     </div>
-
+</div>
 
     <?php endwhile; ?>
 

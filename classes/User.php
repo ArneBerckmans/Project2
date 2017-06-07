@@ -158,7 +158,7 @@ class User{
         }
         $this->email = $email;
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new Exception('Email is ongeldig!');
+            //throw new Exception('Email is ongeldig!');
         }
     }
 
@@ -256,13 +256,43 @@ class User{
     }
 
     public function getProfile(){
+    $conn = Db::getInstance();
+    $statement = $conn->prepare("SELECT * FROM users WHERE username = :userName;");
+    $statement->bindValue(':userName', $this->userName);
+    $statement->execute();
+    return $result = $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+    public function getProfile2(){
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT * FROM users WHERE username = :userName;");
-        $statement->bindValue(':userName', $this->userName);
+        $statement = $conn->prepare("SELECT * FROM users WHERE email = :email;");
+
+        $statement->bindValue(':email', $this->email);
         $statement->execute();
         return $result = $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function updateProfile($email){
+        $conn = Db::getInstance();
 
+        if (isset($this->passWord)) {
+            $options = [
+                'cost'=>12,
+            ];
+
+            $hashpassword = passWord_hash($this->getPassWord(), PASSWORD_DEFAULT, $options);
+
+            $update = $conn ->prepare("UPDATE users SET username = :userName, password = :passWord WHERE email = :email");
+            $update ->bindValue(':userName', $this->getUserName());
+            $update ->bindValue(':passWord', $hashpassword);
+            $update ->bindValue(':email', $email);
+        } else {
+            $update = $conn ->prepare("UPDATE users SET username = :userName WHERE email = :email");
+            $update ->bindValue(':userName', $this->getUserName());
+            $update ->bindValue(':email', $email);
+        }
+
+        return $update->execute();
+    }
 }

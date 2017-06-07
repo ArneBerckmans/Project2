@@ -50,7 +50,7 @@ header{
     font-size:2em;
     overflow: hidden;
     display: block;
-    z-index: 100;
+    z-index: 101;
 }
 
 .bottom{
@@ -134,8 +134,8 @@ header{
 }
 
 .filter{
-   position: absolute;
-
+   position: fixed;
+    z-index: 100;
     top: 20%;
     left: 50%;
     /* bring your own prefixes */
@@ -178,6 +178,44 @@ header{
 
 .active3{
     background-color: #f9ddaa;
+}
+
+.actual{
+    border-style: solid;
+    border-width: 3px;
+    border-color: #ffd074;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    padding-right: 100px;
+    padding-left: 20px;
+}
+
+.profile2{
+    margin-top: 35%;
+    position: absolute;
+
+}
+
+.edit{
+    margin-top: 20%;
+    margin-left: 10%;
+
+}
+
+.info{
+    margin-left: 62%;
+}
+
+.passEdit{
+    margin-bottom: 10%;
+}
+
+.posts{
+  display: block;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 50%;
+
 }
 
 #slider{
