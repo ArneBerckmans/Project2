@@ -59,6 +59,44 @@ if (!empty($_POST)){
 
     }
 
+    if (!empty($_FILES) && isset($_POST['addPicture'])) {
+        $file = $currentUser['userID'];
+
+        $imageType = pathinfo(basename($_FILES["profilePics"]["name"]), PATHINFO_EXTENSION);
+        $targetFile = "upload/profilePics/" . $file . "." . $imageType;
+
+        try {
+            if ($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg" && $imageType != "gif") {
+                throw new Exception('Dit is geen afbeelding');
+            }
+
+            if (!move_uploaded_file($_FILES["profilePics"]["tmp_name"], $targetFile)) {
+                throw new Exception("Error uploading image");
+            }
+
+            $profileImage = "upload/profilePics/".$currentUser['userID'].".".$imageType;
+            //echo $profileImage;
+            try{
+                $user2 = new User();
+                $user2->setEmail($currentUser['email']);
+                $user2->setProfileImage($profileImage);
+                if ($user2->changePicture()){
+                    $currentUser= $user->getProfile();
+                    $feedback2 = "Saved";
+                    //echo $currentUser['profileImage'];
+                }
+
+            } catch (Exception $e) {
+                $error2 = $e->getMessage();
+            }
+
+
+        } catch (Exception $e) {
+            $error2 = $e->getMessage();
+
+        }
+    }
+
 
 }
 
@@ -85,7 +123,7 @@ if (!empty($_POST)){
 
                 reader.onload = function (e) {
                     $('.profilePic').attr('style', "background: url('"+e.target.result+"') center;background-size: cover;");
-                }
+                };
 
                 reader.readAsDataURL(input.files[0]);
             }
@@ -105,7 +143,7 @@ if (!empty($_POST)){
     </nav>
     <nav>
         <ul class="myDIV">
-            <li><a class="profile" href="home.php">Back</a></li>
+            <li><a class="profile" href="home.php">Home</a></li>
             <li><a class="logout" href="logout.php">Logout</a></li>
         </ul>
     </nav>
@@ -118,8 +156,26 @@ if (!empty($_POST)){
 
     <div class="pic">
 
-        <form class="addPic" action="" method="post" enctype="multipart/form-data">
-            
+        <form class="addPic addPicture" action="" method="post" enctype="multipart/form-data">
+
+
+            <label for="profilePics">
+                <img src="#" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('<?php echo $currentUser["profileImage"] ?>') center; background-size: cover;">
+            </label>
+            <input type="file" name="profilePics" id="profilePics" onchange="readURL(this);" class="form-control hidden">
+
+            <input name="addPicture" class="editPic" type="submit" value="Aanpassen">
+
+
+            <?php
+            if (isset($error2)):?>
+                <div class="alert alert-danger"><?php echo $error2; ?></div>
+            <?php endif; ?>
+            <?php
+            if (isset($feedback2)):
+                ?>
+                <div class="alert alert-success"><?php echo $feedback2; ?></div>
+            <?php endif; ?>
         </form>
 
     </div>
@@ -150,9 +206,9 @@ if (!empty($_POST)){
 
 </main>
 <footer class="bottom">
-    <a href="home.php" class="home2 footer clickable"><img src="#"></a>
-    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="#"></a>
-    <a href="#" class="hist footer clickable"><img src="#"></a>
+    <a href="home.php" class="home2 footer clickable"><img src="img/home.png"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="img/new.png"></a>
+    <a href="#" class="hist footer clickable"><img src="img/view.png"></a>
 </footer>
 </body>
 </html>

@@ -1,8 +1,22 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    include_once("classes/" . $class . ".php");
+    //include_once("classes/" . $class . ".php");
+    include_once ("classes/User.php");
+    include_once ("classes/Post.php");
+    include_once ("classes/Db.php");
 });
+
+require "library/twitteroauth.php";
+
+
+
+$consumer = "8OVw7s8sXLpmPL4KNcSiMpAwu";
+$consumersecret = "A8gWPaV1Z9pE7HSvxwPZ56gmvZx0ilHPePqVJuHEGBIPitnvvP";
+$accesstoken = "2839464083-Uw8zyamIEzdkEhIVo35PxZoSFVEapsAu5xAYZo5";
+$accesstokensecret = "bmzkaxGKe3MfSJDZ8YmMco00ziFJrozRyKz2siMbtciX1";
+
+$twitter = new TwitterOAuth($consumer, $consumersecret, $accesstoken, $accesstokensecret);
 
 session_start();
 if (!isset($_SESSION['user'])) {
@@ -17,6 +31,16 @@ if (!isset($_SESSION['user'])) {
     //echo $userID; vind juiste ID
 
 
+//twitter ophalen
+
+
+
+/*echo $twitter->buildOauth($url, $requestMethod)
+    ->setPostfields($postfields)
+    ->performRequest();*/
+
+
+
 //posts ophalen
 
      $arrayUser = "";
@@ -25,20 +49,16 @@ if (!isset($_SESSION['user'])) {
     $filter = new Post();
     $statementFilter = $filter->getAll();
 
-/*    while ($row = $statementFilter->fetch(PDO::FETCH_ASSOC)){
-        $arrayUser[] = $row['username'];
-        $arrayMood[]= $row['moods'];
-        //echo $arrayMood;
-    }*/
+//filter
 
+        if (isset($_POST['Moodi'])){
+            $filter = new Post();
+            $Mfilter = $filter->getMoodi();
+        }
 
-/*$conn = db::getInstance();
-$statementFilter = $conn->prepare("SELECT * FROM postsmoodi");
-$statementFilter->execute();
-$users = $statementFilter->fetchAll();
-foreach ($users as $u){
-    echo $u['moodID'];
-}*/
+        if (isset($_POST['Inst'])){
+            echo 'twitter';
+        }
 
 
 
@@ -56,6 +76,18 @@ foreach ($users as $u){
 
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script>
+        $( document ).ready(function() {
+
+            $( ".F5" ).click(function() {
+                $( ".actual" ).toggle();
+            });
+
+            $( ".F1" ).click(function() {
+                $( ".twitter" ).toggle();
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -80,19 +112,45 @@ foreach ($users as $u){
 
 </div>
 
-
+    <form action="" method="post">
     <div class="filter">
         <button class="F1">Filter</button>
         <!--<p class="arrow-up"></p>-->
         <button class="F2 clickable2">Alles</button>
-        <button class="F3 clickable2">Moodi</button> <!--PLACEHOLDER-->
-        <button class="F4 clickable2">Instagram</button> <!--PLACEHOLDER-->
-        <button class="F5 clickable2">Twitter</button> <!--PLACEHOLDER-->
+        <button class="F3 clickable2" name="Moodi"><img src="img/moodi.png"></button> <!--PLACEHOLDER-->
+        <button class="F4 clickable2" name="Inst"><img src="img/instagram.png"></button> <!--PLACEHOLDER-->
+        <button class="F5 clickable2" name="Twitter"><img src="img/twitter.png"></button> <!--PLACEHOLDER-->
     </div>
+    </form>
 
 
 
 <div class="posts">
+
+    <div class="twitter">
+        <form action="" method="post">
+            <!--<label>Search: <input type="text" name="keyword"></label>-->
+        </form>
+        <?php
+            $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23mmoodi&result_type=recent');
+            $tweetsUser = $twitter->get('https://api.twitter.com/1.1/users/lookup.json');
+
+        if(isset($tweets->statuses) && is_array($tweets->statuses)) {
+            if(count($tweets->statuses)) {
+                foreach($tweets->statuses as $tweet) {
+
+                    echo '<img src="'.$tweet->user->profile_image_url.'"/>'.$tweet->text.'<br>';
+
+                }
+            }
+            else {
+                echo 'The result is empty';
+            }
+        }
+        ?>
+
+    </div>
+
     <?php
        /* foreach ($arrayUser as $value){
             //echo $value;
@@ -104,29 +162,60 @@ foreach ($users as $u){
 
     while ($row = $statementFilter->fetch(PDO::FETCH_ASSOC)):
         $arrayUser = $row['username'];
-        $arrayMood= $row['moods'];
+        $arrayImage = $row['profileImage'];
+        //$arrayMood= $row['moods'];
+        $arrayMood= $row['color'];
+
+
         //echo $arrayMood;
 
     ?>
         <div class="actual">
     <div class="usernames">
-        <p><?php echo $arrayUser; ?></p>
+        <img class="userimg" src="<?php echo $arrayImage; ?>" style="width: 50px; height: 50px; border-radius: 50px">
+        <p class="username"><?php echo $arrayUser; ?></p>
     </div>
     <div class="moods">
-        <p><?php echo $arrayMood; ?></p>
+        <p style="background-color: <?php echo $arrayMood; ?>; width: 50px; height: 50px; border-radius: 50px">
+            <?php
+            if($arrayMood == '#ed4850'){
+                $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood0.png"';
+            }
+            elseif ($arrayMood == '#eaa149'){
+                $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood1.png"';
+            }
+            elseif ($arrayMood == '#efe265'){
+                $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood2.png"';
+            }
+            elseif ($arrayMood == '#6eea8b'){
+                $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood3.png"';
+            }
+            elseif ($arrayMood == '#49c4ea'){
+                $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood4.png"';
+            }
+            elseif ($arrayMood == '#ea49ea'){
+                $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood5.png"';
+            }
+
+            echo $moodImage ?>
+        </p>
 
     </div>
+
+
 </div>
 
     <?php endwhile; ?>
+
+
 
 </div>
 
 </main>
 <footer class="bottom">
-    <a href="home.php" class="home2 footer clickable"><img src="#"></a>
-    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="#"></a>
-    <a href="#" class="hist footer clickable"><img src="#"></a>
+    <a href="home.php" class="home2 footer clickable"><img src="img/home.png"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="img/new.png"></a>
+    <a href="#" class="hist footer clickable"><img src="img/view.png"></a>
 </footer>
 </body>
 </html>

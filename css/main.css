@@ -5,11 +5,15 @@ legend{
 
 body{
     font-family: Quicksand;
+    background-color: #f9f8f4;
 }
+
 
 html, body{
     height: 100%;
 }
+
+
 
 .home{
     display: block;
@@ -29,6 +33,33 @@ html, body{
     color: #ffffff;
 }
 
+.home2 img{
+    max-width: 100%;
+    width: auto;
+    max-height: 75%;
+    height: auto;
+    margin-left: 35%;
+    margin-top: 2%;
+}
+
+.circle img{
+    max-width: 100%;
+    width: auto;
+    max-height: 75%;
+    height: auto;
+    margin-left: 12%;
+    margin-top: 10%;
+}
+
+.hist img{
+    max-width: 100%;
+    width: auto;
+    max-height: 75%;
+    height: auto;
+    margin-left: 46%;
+    margin-top: 2%;
+}
+
 .logo{
     width: 10%;
     height: 10%;
@@ -41,6 +72,25 @@ html, body{
 
     /*flex-direction: row;
     justify-content: space-between;*/
+}
+
+.twitter{
+    display: block;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #6eea8b;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    padding-right: 80px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+
+.twitter img{
+    margin-top: 15px;
+    border-radius: 100%;
+    border: 2px #ffd074 solid;
+    margin-right: 20px;
 }
 
 header{
@@ -144,6 +194,10 @@ header{
     flex-direction: row;
 }
 
+.filter img{
+    height: 40px;
+}
+
 .F1, .F2, .F3, .F4, .F5{
     border: none;
     color: snow;
@@ -180,18 +234,34 @@ header{
     background-color: #f9ddaa;
 }
 
+.username{
+    float: right;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.userimg{
+    margin-top: 5px;
+    border: 2px #ffd074 solid;
+}
+
+.usernames{
+    margin-bottom: 10%;
+}
+
 .actual{
+    display: block;
     border-style: solid;
     border-width: 3px;
     border-color: #ffd074;
     margin-bottom: 10px;
     border-radius: 30px;
-    padding-right: 100px;
+    padding-right: 80px;
     padding-left: 20px;
 }
 
 .profile2{
-    margin-top: 35%;
+    margin-top: 20%;
     position: absolute;
 
 }
@@ -200,6 +270,10 @@ header{
     margin-top: 20%;
     margin-left: 10%;
 
+}
+
+.hidden{
+    display: none;
 }
 
 .info{
@@ -216,6 +290,16 @@ header{
     margin-left: 25%;
     margin-top: 50%;
 
+}
+
+.imageContainer{
+
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-left: 45%;
+    border: 5px solid #ed4850;
+    overflow: hidden;
 }
 
 #slider{
@@ -236,6 +320,20 @@ header{
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.jcs-value{
+    position: absolute;
+
+}
+
+.moods{
+    display: block;
+    border-radius: 20%;
+}
+
+.save{
+    margin-bottom: 100px;
 }
 
 /*.arrow-up {

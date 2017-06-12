@@ -60,12 +60,18 @@ class Post{
         $conn = db::getInstance();
 
         //$statementFilter = $conn->prepare("SELECT * FROM postmoodi INNER JOIN moods ON postmoodi.moodID = moods.moodID INNER JOIN users ON postmoodi.userID = users.userID");
-        $statementFilter = $conn->prepare("SELECT * FROM postsmoodi INNER JOIN moods ON postsmoodi.moodID = moods.moodID INNER JOIN users ON postsmoodi.userID = users.userID");
+        $statementFilter = $conn->prepare("SELECT * FROM postsmoodi INNER JOIN moods ON postsmoodi.moodID = moods.moodID INNER JOIN users ON postsmoodi.userID = users.userID ORDER BY id DESC");
         $statementFilter->execute();
         //$users = $statementFilter->fetchAll();
         //$statementFilter->fetchAll();
         return $statementFilter;
     }
 
+    public function getMoodi(){
+        $conn = db::getInstance();
 
+        $filter = $conn->prepare("SELECT * FROM postsmoodi INNER JOIN moods ON postsmoodi.moodID = moods.moodID INNER JOIN users ON postsmoodi.userID = users.userID ORDER BY id DESC");
+        $filter->execute();
+        return $filter;
+    }
 }

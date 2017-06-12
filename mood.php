@@ -70,14 +70,16 @@ if (isset($_POST['ready'])) {
           //console.log("ready!");
 
           $(function () {
-              var circularSlider = $('#slider').CircularSlider({
+              //window.location.href= "mood.php?uid=" .color;
+             /* var circularSlider = $('#slider').CircularSlider({
                   min: 0,
                   max: 359,
                   value: 0,
                   radius: 200,
                   labelSuffix: "°",
                   slide: function (ui, value) {
-                      var colors = ['red', 'orange', 'yellow', 'green', 'purple', 'blue'];
+                      //var colors = ['red', 'orange', 'yellow', 'green', 'purple', 'blue'];
+                      var colors = ['#ed4850', '#eaa149', '#efe265', '#6eea8b', '#49c4ea', '#ea49ea'];
                       var color = colors[parseInt(value / 60)];
                       ui.find('.jcs').css({'border-color' : color, 'border-width': '50px' });
                       ui.find('.jcs-indicator').css({'background' : color});
@@ -86,8 +88,31 @@ if (isset($_POST['ready'])) {
                       $('.data').val(color);
 
                   }
+              });*/
+
+              var circularSlider = $('#slider').CircularSlider({
+                  min: 0,
+                  max: 359,
+                  value: 0,
+                  radius: 200,
+                  innerCircleRatio: 0.7,
+                  //labelSuffix: "°",
+                  formLabel : function(value, prefix, suffix) {
+                      return '<img style="width: auto; margin-bottom: 16px;" src="img/moods/mood' + parseInt(value / 60) + '.png">';
+                  },
+                  slide: function (ui, value) {
+                      //var colors = ['red', 'orange', 'yellow', 'green', 'purple', 'blue'];
+                      var colors = ['#ed4850', '#eaa149', '#efe265', '#6eea8b', '#49c4ea', '#ea49ea'];
+                      var color = colors[parseInt(value / 60)];
+                      ui.find('.jcs').css({'border-color' : color, 'border-width': '50px' });
+                      ui.find('.jcs-indicator').css({'background' : color});
+                      ui.find('.jcs-value').css({'background' : color, 'top': '4%', 'left': '4%'});
+                      //document.getElementById('hiddenValue').value = value;
+                      $('.data').val(color);
+
+                  }
               });
-              //window.location.href= "mood.php?uid=" .color;
+
           });
           function setInputValue(ui, val) {
               document.getElementById(slider).setAttribute('value', val);
@@ -128,9 +153,9 @@ if (isset($_POST['ready'])) {
     </form>
 </main>
 <footer class="bottom">
-    <a href="home.php" class="home2 footer clickable"><img src="#"></a>
-    <a href="mood.php" class="moodLink circle footer2 clickable"><img src="#"></a>
-    <a href="#" class="hist footer clickable"><img src="#"></a>
+    <a href="home.php" class="home2 footer clickable"><img src="img/home.png"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="img/new.png"></a>
+    <a href="#" class="hist footer clickable"><img src="img/view.png"></a>
 </footer>
 
 

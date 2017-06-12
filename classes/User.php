@@ -139,6 +139,7 @@ class User{
     private $userName;
     private $passWord;
     private $confirm;
+    private $profileImage = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
 
     /**
      * @return mixed
@@ -200,6 +201,27 @@ class User{
         $this->passWord = $passWord;
     }
 
+    /**
+     * @return mixed
+     */
+    /**
+     * @return mixed
+     */
+    public function getProfileImage()
+    {
+        return $this->profileImage;
+    }
+
+    /**
+     * @param mixed $profileImage
+     */
+    public function setProfileImage($profileImage)
+    {
+        if (empty($profileImage)) {
+            throw new Exception('Image URL cannot be empty!');
+        }
+        $this->profileImage = $profileImage;
+    }
 
     public function save()
     {
@@ -227,12 +249,12 @@ class User{
 
         $hashpassword = passWord_hash($this->getPassWord(), PASSWORD_DEFAULT, $options);
 
-        $statement = $conn -> prepare("INSERT INTO users (username, password, email) VALUES (:userName, :passWord, :email)");
+        $statement = $conn -> prepare("INSERT INTO users (username, password, email, profileImage) VALUES (:userName, :passWord, :email, :profileImage)");
 
         $statement->bindValue(':userName', $this->userName);
         $statement->bindValue(':passWord', $hashpassword);
         $statement->bindValue(':email', $this->email);
-
+        $statement->bindValue(':profileImage', $this->profileImage);
         return $statement->execute();
 
     }
@@ -293,6 +315,15 @@ class User{
             $update ->bindValue(':email', $email);
         }
 
+        return $update->execute();
+    }
+
+    public function changePicture(){
+        $conn = Db::getInstance();
+
+        $update = $conn->prepare("UPDATE users SET profileImage = :profileImage WHERE email = :email");
+        $update->bindValue(':profileImage', $this->profileImage);
+        $update->bindValue(':email', $this->email);
         return $update->execute();
     }
 }
