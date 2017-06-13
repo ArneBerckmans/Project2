@@ -130,7 +130,8 @@ catch(Exception $e){
 
         <div>
             <!--<label for="username">Gebruikersnaam</label>-->
-            <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
+            <!-- <img src="img/GebruikersnaamIcon.png" alt="icon username"> -->
+            <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam" >
         </div>
 
         <div>
