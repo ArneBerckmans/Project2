@@ -56,7 +56,7 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
             $user2->setProfileImage($profileImage);
             if ($user2->changePicture()){
                 //$currentUser= $user->getProfile();
-                $feedback2 = "Saved";
+
                 //echo $currentUser['profileImage'];
             }
 
@@ -126,26 +126,18 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
 
 
     <form class="login addPic addPicture" method="post" id="form1" runat="server" action="Register.php" enctype="multipart/form-data">
-
+        <div class="img">
         <label for="profilePics">
             <img src="#" id="placeholder" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('img/PlaceholderImage.png') center; background-size: cover;">
         </label>
         <input type="file" name="profilePics" style="display: none;" id="profilePics" onchange="readURL(this);" class="form-control" />
         <input type="button" value="Kies bestand" onclick="document.getElementById('profilePics').click();" />
 
-        <?php
-        if (isset($error2)):?>
-            <div class="alert alert-danger"><?php echo $error2; ?></div>
-        <?php endif; ?>
-        <?php
-        if (isset($feedback2)):
-            ?>
-            <div class="alert alert-success"><?php echo $feedback2; ?></div>
-        <?php endif; ?>
+
+</div>
 
 
-
-
+    <div class="userinfo">
         <div id="input_container">
             <!--<label for="email">Email</label>-->
             <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="email">
@@ -176,13 +168,10 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
 
         <?php
         if (isset($error)): ?>
-            <div class="alert"><?php echo $error ?></div>
+            <div class="alert alert-danger"><?php echo $error ?></div>
         <?php endif; ?>
-        <?php if(isset($error3)) { echo $error3; } ?>
-        <?php if(isset($error1)) { echo $error1; } ?>
-        <?php if(isset($error2)) { echo $error2; } ?>
-        <?php if(isset($error4)) { echo $error4; } ?>
 
+    </div>
     </form>
 
 </div>
