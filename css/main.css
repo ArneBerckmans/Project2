@@ -346,4 +346,26 @@ header{
     margin-left: 50px;
 }*/
 
+/*HIERONDER BEGINT CSS LENNY*/
+
+#lijnlogo{
+    width: 40px;
+    margin-top:20px;
+    position: absolute;
+}
+
+#titelregistreren{
+    font-family: 'Brush Script MT';
+    text-align: center;
+    font-size: 30px;
+    color: #ed4850;
+    margin-top:20px;
+    border-bottom: none;
+}
+
+#placeholder{
+    height: 150px;
+    margin: auto
+;
+}
 

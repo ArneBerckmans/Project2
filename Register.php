@@ -109,7 +109,8 @@ catch(Exception $e){
 <body>
 <div class="container">
 
-    <legend>Registreer</legend>
+    <img src="img/LijnLogo.png" alt="logo" id="lijnlogo">
+    <legend id="titelregistreren">Registreren</legend>
 
         <!--<img id="blah" src="#" alt="jouw foto." />
         <input type="file" name="fileToUpload" id="fileToUpload" onchange="readURL(this);">
@@ -123,10 +124,9 @@ catch(Exception $e){
 
     <form class="login" method="post" id="form1" runat="server" action="Register.php" enctype="multipart/form-data">
 
-        <div>
-            <!--<label for="email">Email</label>-->
-            <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="email">
-        </div>
+        <img src="img/PlaceholderImage.png" alt="placeholder" id="placeholder">
+        <!-- hier moet men nog een image kunnen uploaden, die dan in de plek moet
+        komen van bovenstaande placeholder, gebruik 'bestand kiezen' -->
 
         <div>
             <!--<label for="username">Gebruikersnaam</label>-->
@@ -134,8 +134,13 @@ catch(Exception $e){
         </div>
 
         <div>
+            <!--<label for="email">Email</label>-->
+            <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="E-mailadres">
+        </div>
+
+        <div>
             <!--<label for="password">wachtwoord</label>-->
-            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="wachtwoord">
+            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="Wachtwoord">
         </div>
 
         <div>
@@ -143,7 +148,7 @@ catch(Exception $e){
             <input value="<?php echo(isset($_POST['confirm']) ? $_POST['confirm'] : ''); ?>" type="password" name="confirm" id="password" class="form-control" placeholder="Bevestig wachtwoord">
         </div>
 
-        <button class="btn" type="submit" value="Upload" name="submit">Registreer</button>
+        <button class="btn" type="submit" value="Upload" name="submit">Registreren</button>
         <p>Al een account? <a href="login.php">Hier inloggen!</a></p>
 
 
