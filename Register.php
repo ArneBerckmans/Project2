@@ -128,10 +128,10 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
     <form class="login addPic addPicture" method="post" id="form1" runat="server" action="Register.php" enctype="multipart/form-data">
 
         <label for="profilePics">
-            <img src="#" id="placeholder" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('img/PlaceholderImage.png') center; background-size: cover;">
+            <img src="#" id="placeholder" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('img/PlaceholderImage.png');  background-size: cover;" alt="image">
         </label>
-        <input type="file" name="profilePics" style="display: none;" id="profilePics" onchange="readURL(this);" class="form-control" />
-        <input type="button" value="Kies bestand" onclick="document.getElementById('profilePics').click();" />
+        <input type="file" name="profilePics" style="display: none; " id="profilePics" onchange="readURL(this);" class="form-control" />
+        <input type="button" id="bestand" value="Bestand kiezen" onclick="document.getElementById('profilePics').click();" />
 
         <?php
         if (isset($error2)):?>
@@ -143,35 +143,33 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
             <div class="alert alert-success"><?php echo $feedback2; ?></div>
         <?php endif; ?>
 
-
-
-
-        <div id="input_container">
-            <!--<label for="email">Email</label>-->
-            <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="email">
-            <img src="img/MailIcon.png" id="input_img">
-        </div>
-
         <div id="input_container">
             <!--<label for="username">Gebruikersnaam</label>-->
-            <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control gebruiker" placeholder="Gebruikersnaam">
+            <input value="<?php echo (isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" type="text" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
             <img src="img/GebruikersnaamIcon.png" id="input_img">
         </div>
 
         <div id="input_container">
+            <!--<label for="email">Email</label>-->
+            <input value="<?php echo (isset($_POST['email']) ? $_POST['email'] : ''); ?>" type="text" name="email" id="email" class="form-control" placeholder="E-mailadres">
+            <img src="img/MailIcon.png" id="input_img">
+        </div>
+
+
+        <div id="input_container">
             <!--<label for="password">wachtwoord</label>-->
-            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="wachtwoord">
+            <input value="<?php echo (isset($_POST['passWord']) ? $_POST['passWord'] : ''); ?>" type="password" name="passWord" id="password" class="form-control" placeholder="Wachtwoord">
             <img src="img/SlotOpenIcon.png" id="input_img">
         </div>
 
         <div id="input_container">
             <!--<label for="confirm">Bevestig wachtwoord</label>-->
-            <input value="<?php echo(isset($_POST['confirm']) ? $_POST['confirm'] : ''); ?>" type="password" name="confirm" id="password" class="form-control" placeholder="Bevestig wachtwoord">
+            <input value="<?php echo(isset($_POST['confirm']) ? $_POST['confirm'] : ''); ?>" type="password" name="confirm" id="password" class="form-control" placeholder="Wachtwoord bevestigen">
             <img src="img/SlotClosedIcon.png" id="input_img">
         </div>
 
-        <button class="btn editPic" type="submit" value="Upload" name="submit" >Registreer</button>
-        <p>Al een account? <a href="login.php">Hier inloggen!</a></p>
+        <button class="btn editPic" type="submit" value="Upload" name="submit" id="registerbutton">Registreren</button>
+        <p id="linkinloggen">Al een account? <a href="login.php">Hier inloggen!</a></p>
 
 
         <?php
@@ -183,7 +181,7 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
         <?php if(isset($error2)) { echo $error2; } ?>
         <?php if(isset($error4)) { echo $error4; } ?>
 
-    </form>
+        </div>
 
 </div>
 </body>
