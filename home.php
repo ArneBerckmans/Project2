@@ -62,6 +62,7 @@ if (!isset($_SESSION['user'])) {
 
 
 
+
 ?><!doctype HTML>
 <html>
 
@@ -115,9 +116,8 @@ if (!isset($_SESSION['user'])) {
     </nav>
 </header>
 <main>
-<div id="">
 
-</div>
+
 
 
     <form method="post">
@@ -135,24 +135,60 @@ if (!isset($_SESSION['user'])) {
 
 <div class="posts">
 
+    <div id="Instagram">
+        <?php  /*function callInstagram($url)
+        {
+            $ch = curl_init();
+            curl_setopt_array($ch, array(
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_SSL_VERIFYHOST => 2
+            ));
+
+            $result = curl_exec($ch);
+            curl_close($ch);
+            return $result;
+        }
+
+        $tag = 'moodiKVM';
+        $client_id = "3dedbbb0083248328b80781b5a8aa35e";
+        $url = 'https://api.instagram.com/v1/tags/'.$tag.'/media/recent?client_id='.$client_id;
+
+        $inst_stream = callInstagram($url);
+        $results = json_decode($inst_stream, true);
+
+        foreach($results['data'] as $item){
+            $image_link = $item['images']['low_resolution']['url'];
+            echo '<img src="'.$image_link.'" />';
+        }*/
+
+
+
+
+        ?>
+
+
+    </div>
+
     <div class="twitter">
         <form action="" method="post">
             <!--<label>Search: <input type="text" name="keyword"></label>-->
         </form>
         <?php
-            $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23mmoodi&result_type=recent');
+            $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23moodikvm&result_type=recent');
             $tweetsUser = $twitter->get('https://api.twitter.com/1.1/users/lookup.json');
 
         if(isset($tweets->statuses) && is_array($tweets->statuses)) {
             if(count($tweets->statuses)) {
                 foreach($tweets->statuses as $tweet) {
 
-                    echo '<img src="'.$tweet->user->profile_image_url.'"/>'.$tweet->text.'<br>';
+                    echo '<div class="twitter2"><img src="'.$tweet->user->profile_image_url.'"/>'.$tweet->text.'<br></div>';
 
                 }
             }
             else {
-                echo 'The result is empty';
+
             }
         }
         ?>
@@ -188,24 +224,30 @@ if (!isset($_SESSION['user'])) {
             <?php
             if($arrayMood == '#ed4850'){
                 $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood0.png"';
+                echo $moodImage;
             }
             elseif ($arrayMood == '#eaa149'){
                 $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood1.png"';
+                echo $moodImage;
             }
             elseif ($arrayMood == '#efe265'){
                 $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood2.png"';
+                echo $moodImage;
             }
             elseif ($arrayMood == '#6eea8b'){
                 $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood3.png"';
+                echo $moodImage;
             }
             elseif ($arrayMood == '#49c4ea'){
                 $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood4.png"';
+                echo $moodImage;
             }
             elseif ($arrayMood == '#ea49ea'){
                 $moodImage = '<img style="width: 50px; height: 50px;" src="img/moods/mood5.png"';
+                echo $moodImage;
             }
 
-            echo $moodImage ?>
+             ?>
         </p>
 
     </div>
