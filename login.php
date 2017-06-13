@@ -44,9 +44,13 @@ spl_autoload_register(function ($class) {
 </head>
 <body>
     <div class="container">
+
+        <img src="img/LijnLogo.png" alt="logo" id="lijnlogo">
         <form class="login" action="" method="post">
 
-            <legend>Login</legend>
+            <legend id="titellogin">Login</legend>
+
+            <img src="img/PlaceholderImage.png" alt="image placeholder" id="placeholder">
 
             <div id="input_container">
                 <!--<label for="username">Gebruikersnaam</label>-->
@@ -56,12 +60,12 @@ spl_autoload_register(function ($class) {
 
             <div id="input_container">
                <!--<label for="password">Paswoord</label>-->
-                <input type="password" name="passWord" id="password" class="form-control" placeholder="paswoord">
+                <input type="password" name="passWord" id="password" class="form-control" placeholder="Wachtwoord">
                 <img src="img/SlotOpenIcon.png" id="input_img">
             </div>
 
-            <button class="btn" type="submit" >Login</button>
-            <p>Nog geen acount? <a href="Register.php">Hier registreren!</a></p>
+            <button class="btn" type="submit" id="registerbutton">Login</button>
+            <p id="linkinloggen">Nog geen acount? <a href="Register.php">Hier registreren!</a></p>
 
 
             <?php

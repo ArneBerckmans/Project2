@@ -6,14 +6,12 @@ legend{
 body{
     font-family: Quicksand;
     background-color: #f9f8f4;
+    color: #777777;
 }
-
 
 html, body{
     height: 100%;
 }
-
-
 
 .home{
     display: block;
@@ -324,20 +322,14 @@ header{
 }
 
 .imageContainer3{
-    width: 160px;
-    height: 160px;
     border-radius: 50%;
     margin-left: 45%;
     overflow: hidden;
 }
 
 .imageContainer{
-
-    width: 160px;
-    height: 160px;
     border-radius: 50%;
-    margin-left: 45%;
-    border: 5px solid #ed4850;
+    border: none;
     overflow: hidden;
 }
 
@@ -395,9 +387,97 @@ header{
     display: none;
 }
 
+#titellogin{
+    display: none;
+}
+
 #placeholder{
-    height: 180px;
+    height: 13em;
+    width: 13em;
+    /*
+    display: block;
+    left: 50%;*/
+    margin-top: 75px;
+    margin-bottom: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.form-control{
+    width: 70%;
+    background-color: #f9f8f4;
+    border: none;
+    box-shadow: none;
+    font-size: 13px;
+}
+
+#bestand{
+    font-size: 20px;
+    color: #ed4850;
+    margin: auto;
+    margin-top:-60px;
+    margin-bottom:20px;
+    display: block;
+    border: none;
+    background-color: #f9f8f4;
+}
+
+#input_container{
     margin: auto;
     display: block;
-    margin-top: 100px;
+    width: 15em;
+    border-bottom: solid 1px;
+}
+
+#email, #password{
+    margin-top: 14px;
+}
+
+#input_img{
+    width: 15px;
+}
+#password.form-control{
+    width: 210px;
+}
+
+#username.form-control{
+    width: 210px;
+}
+
+#email.form-control{
+    width: 210px;
+}
+
+#registerbutton{
+    border-radius: 120px;
+    width: 210px;
+    height: 50px;
+    background-color: #ed4850;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Variane Script';
+    letter-spacing: 1px;
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+#linkinloggen{
+    text-align: center;
+    color: #ed4850;
+}
+
+a{
+    color: #ed4850;
+}
+
+#password{
+    background-color: #f9f8f4;
+}
+
+label{
+    display: block;
+    margin: auto;
 }
