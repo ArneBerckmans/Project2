@@ -59,8 +59,8 @@ if (!empty($_POST)){
 
     }
 
-    if (!empty($_FILES) && isset($_POST['addPicture'])) {
-        $file = $currentUser['userID'];
+    if (!empty($_FILES) && isset($_POST['editProfile'])) {
+        $file = $currentUser['username'];
 
         $imageType = pathinfo(basename($_FILES["profilePics"]["name"]), PATHINFO_EXTENSION);
         $targetFile = "upload/profilePics/" . $file . "." . $imageType;
@@ -74,7 +74,7 @@ if (!empty($_POST)){
                 throw new Exception("Error uploading image");
             }
 
-            $profileImage = "upload/profilePics/".$currentUser['userID'].".".$imageType;
+            $profileImage = "upload/profilePics/".$currentUser['username'].".".$imageType;
             //echo $profileImage;
             try{
                 $user2 = new User();
@@ -154,52 +154,46 @@ if (!empty($_POST)){
         <h1><?php echo htmlspecialchars($currentUser['username'])  ?></h1>
     </div>
 
-    <div class="pic">
-
-        <form class="addPic addPicture" action="" method="post" enctype="multipart/form-data">
-
-
-            <label for="profilePics">
-                <img src="#" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('<?php echo $currentUser["profileImage"] ?>') center; background-size: cover;">
-            </label>
-            <input type="file" name="profilePics" id="profilePics" onchange="readURL(this);" class="form-control hidden">
-
-            <input name="addPicture" class="editPic" type="submit" value="Aanpassen">
-
-
-            <?php
-            if (isset($error2)):?>
-                <div class="alert alert-danger"><?php echo $error2; ?></div>
-            <?php endif; ?>
-            <?php
-            if (isset($feedback2)):
-                ?>
-                <div class="alert alert-success"><?php echo $feedback2; ?></div>
-            <?php endif; ?>
-        </form>
-
-    </div>
-
 <div class="edit">
-    <form class="newProf editProfile" action="" method="post">
+    <form class="newProf editProfile" action="" method="post" enctype="multipart/form-data">
 
-        <div>
+        <label for="profilePics">
+            <img src="#" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('<?php echo $currentUser["profileImage"] ?>') center; background-size: cover;">
+        </label>
+        <input type="file" style="display: none;"  name="profilePics" id="profilePics" onchange="readURL(this);" class="form-control hidden">
+
+        <input type="button" value="Kies bestand" onclick="document.getElementById('profilePics').click();" />
+
+        <div class="usernameEdit" id="input_container">
             <label for="userName">Nieuwe gebruikersnaam</label></br>
             <input type="text" name="userName" id="userName" class="passEdit" value="<?php echo htmlspecialchars($currentUser['username']); ?>">
+            <img src="img/GebruikersnaamIcon.png" id="input_img">
         </div>
 
-        <div>
+        <div id="input_container">
             <label for="password">Nieuw Wachtwoord</label></br>
             <input type="password" name="password" id="password" class="passEdit">
+            <img src="img/SlotOpenIcon.png" id="input_img">
         </div>
+
+
 
         <input name="editProfile" class="save" type="submit" value="Aanpassen">
 
         <?php
-        if (isset($feedback)): ?>
-            <div class="alert alert-success"><?php echo $feedback; ?></div>
+        if (isset($error2)):?>
+            <div class="alert alert-danger"><?php echo $error2; ?></div>
         <?php endif; ?>
+        <?php
+        if (isset($feedback2)):
+            ?>
+            <div class="alert alert-success"><?php echo $feedback2; ?></div>
+        <?php endif; ?>
+
+
     </form>
+
+
 </div>
 
 

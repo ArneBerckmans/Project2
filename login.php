@@ -48,14 +48,16 @@ spl_autoload_register(function ($class) {
 
             <legend>Login</legend>
 
-            <div>
+            <div id="input_container">
                 <!--<label for="username">Gebruikersnaam</label>-->
                 <input type="text" value="<?php echo(isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" name="userName" id="username" class="form-control" placeholder="Gebruikersnaam">
+                <img src="img/GebruikersnaamIcon.png" id="input_img">
             </div>
 
-            <div>
+            <div id="input_container">
                <!--<label for="password">Paswoord</label>-->
                 <input type="password" name="passWord" id="password" class="form-control" placeholder="paswoord">
+                <img src="img/SlotOpenIcon.png" id="input_img">
             </div>
 
             <button class="btn" type="submit" >Login</button>

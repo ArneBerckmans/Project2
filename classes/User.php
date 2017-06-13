@@ -139,7 +139,7 @@ class User{
     private $userName;
     private $passWord;
     private $confirm;
-    private $profileImage = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
+    private $profileImage = "./img/PlaceholderImage.png";
 
     /**
      * @return mixed
@@ -255,6 +255,8 @@ class User{
         $statement->bindValue(':passWord', $hashpassword);
         $statement->bindValue(':email', $this->email);
         $statement->bindValue(':profileImage', $this->profileImage);
+
+
         return $statement->execute();
 
     }

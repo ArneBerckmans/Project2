@@ -9,7 +9,7 @@ spl_autoload_register(function ($class) {
 
 require "library/twitteroauth.php";
 
-
+include 'FootballData.php';
 
 $consumer = "8OVw7s8sXLpmPL4KNcSiMpAwu";
 $consumersecret = "A8gWPaV1Z9pE7HSvxwPZ56gmvZx0ilHPePqVJuHEGBIPitnvvP";
@@ -79,12 +79,19 @@ if (!isset($_SESSION['user'])) {
     <script>
         $( document ).ready(function() {
 
-            $( ".F5" ).click(function() {
-                $( ".actual" ).toggle();
+            $( ".F2" ).click(function() {
+                $( ".actual" ).show();
+                $( ".twitter" ).show();
             });
 
-            $( ".F1" ).click(function() {
-                $( ".twitter" ).toggle();
+            $( ".F5" ).click(function() {
+                $( ".actual" ).hide();
+                $( ".twitter" ).show();
+            });
+
+            $( ".F3" ).click(function() {
+                $( ".twitter" ).hide();
+                $( ".actual" ).show();
             });
         });
     </script>
@@ -112,14 +119,15 @@ if (!isset($_SESSION['user'])) {
 
 </div>
 
-    <form action="" method="post">
+
+    <form method="post">
     <div class="filter">
         <button class="F1">Filter</button>
         <!--<p class="arrow-up"></p>-->
-        <button class="F2 clickable2">Alles</button>
-        <button class="F3 clickable2" name="Moodi"><img src="img/moodi.png"></button> <!--PLACEHOLDER-->
-        <button class="F4 clickable2" name="Inst"><img src="img/instagram.png"></button> <!--PLACEHOLDER-->
-        <button class="F5 clickable2" name="Twitter"><img src="img/twitter.png"></button> <!--PLACEHOLDER-->
+        <button type="button" class="F2 clickable2">Alles</button>
+        <button type="button" class="F3 clickable2" name="Moodi"><img src="img/moodi.png"></button> <!--PLACEHOLDER-->
+        <button type="button" class="F4 clickable2" name="Inst"><img src="img/instagram.png"></button> <!--PLACEHOLDER-->
+        <button type="button" class="F5 clickable2" name="Twitter"><img src="img/twitter.png"></button> <!--PLACEHOLDER-->
     </div>
     </form>
 
