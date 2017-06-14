@@ -151,34 +151,34 @@ if (!empty($_POST)){
 <main class="profile2">
 
     <div class="info">
-        <h1><?php echo htmlspecialchars($currentUser['username'])  ?></h1>
+        <h1 id="profielbewerken"><!--?php echo htmlspecialchars($currentUser['username'])?-->Profiel bewerken</h1>
     </div>
 
 <div class="edit">
     <form class="newProf editProfile" action="" method="post" enctype="multipart/form-data">
 
         <label for="profilePics">
-            <img src="#" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('<?php echo $currentUser["profileImage"] ?>') center; background-size: cover;">
+            <img src="#" id="placeholderProfile" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('<?php echo $currentUser["profileImage"] ?>') center; background-size: cover;">
         </label>
-        <input type="file" style="display: none;"  name="profilePics" id="profilePics" onchange="readURL(this);" class="form-control hidden">
+        <input  type="file" style="display: none;" name="profilePics" id="profilePics" onchange="readURL(this);" class="form-control hidden">
 
-        <input type="button" value="Kies bestand" onclick="document.getElementById('profilePics').click();" />
+        <input type="button" id="bestandProfile" value="Foto wijzigen" onclick="document.getElementById('profilePics').click();" />
 
         <div class="usernameEdit" id="input_container">
-            <label for="userName">Nieuwe gebruikersnaam</label></br>
-            <input type="text" name="userName" id="userName" class="passEdit" value="<?php echo htmlspecialchars($currentUser['username']); ?>">
+            <label for="userName"></label></br>
+            <input type="text" name="userName" id="userName" class="passEdit" placeholder="E-mailadres wijzigen" value="<?php echo htmlspecialchars($currentUser['username']); ?>">
             <img src="img/GebruikersnaamIcon.png" id="input_img">
         </div>
 
         <div id="input_container">
-            <label for="password">Nieuw Wachtwoord</label></br>
-            <input type="password" name="password" id="password" class="passEdit">
+            <label for="password"></label></br>
+            <input type="password" name="password" id="password" class="passEdit" placeholder="Gebruikersnaam wijzigen">
             <img src="img/SlotOpenIcon.png" id="input_img">
         </div>
 
 
 
-        <input name="editProfile" class="save" type="submit" value="Aanpassen">
+        <input name="editProfile" class="save" type="submit" value="Bewerken" id="buttonbewerken">
 
         <?php
         if (isset($error2)):?>
@@ -200,9 +200,9 @@ if (!empty($_POST)){
 
 </main>
 <footer class="bottom">
-    <a href="home.php" class="home2 footer clickable"><img src="img/home.png"></a>
-    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="img/new.png"></a>
-    <a href="#" class="hist footer clickable"><img src="img/view.png"></a>
+    <a href="home.php" class="home2 footer clickable"><img alt="home icon" id="homeIcon" src="img/home.png"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img alt="plus icon" id="plusIcon" src="img/new.png"></a>
+    <a href="#" class="hist footer clickable"><img alt="beker icon" id="bekerIcon" src="img/view.png"></a>
 </footer>
 </body>
 </html>

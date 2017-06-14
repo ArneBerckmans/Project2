@@ -131,7 +131,7 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
             <img src="#" id="placeholder" class="imageContainer profilePic" onchange="readURL(this);" style="background: url('img/PlaceholderImage.png') center; background-size: cover;">
         </label>
         <input type="file" name="profilePics" style="display: none;" id="profilePics" onchange="readURL(this);" class="form-control" />
-        <input type="button" value="Kies bestand" onclick="document.getElementById('profilePics').click();" />
+        <input type="button" value="Kies bestand" id="bestand" onclick="document.getElementById('profilePics').click();" />
 
 
 </div>
@@ -162,8 +162,8 @@ if (!empty($_FILES) && isset($_POST['submit'])) {
             <img src="img/SlotClosedIcon.png" id="input_img">
         </div>
 
-        <button class="btn editPic" type="submit" value="Upload" name="submit" >Registreer</button>
-        <p>Al een account? <a href="login.php">Hier inloggen!</a></p>
+        <button class="btn editPic" type="submit" value="Upload" name="submit" id="registerbutton">Registreer</button>
+        <p id="linkinloggen">Al een account? <a href="login.php">Hier inloggen!</a></p>
 
 
         <?php

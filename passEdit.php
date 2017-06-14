@@ -61,9 +61,9 @@ $userID = $currentUser['userID'];
 
 </main>
 <footer class="bottom">
-    <a href="home.php" class="home2 footer clickable"><img src="#"></a>
-    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="#"></a>
-    <a href="#" class="hist footer clickable"><img src="#"></a>
+    <a href="home.php" class="home2 footer clickable"><img alt="home icon" id="homeIcon" src="img/home.png"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img alt="plus icon" id="plusIcon" src="img/new.png"></a>
+    <a href="#" class="hist footer clickable"><img alt="beker icon" id="bekerIcon" src="img/view.png"></a>
 </footer>
 </body>
 </html>

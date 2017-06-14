@@ -97,7 +97,9 @@ if (!isset($_SESSION['user'])) {
         });
     </script>
 </head>
+
 <body>
+
 <header>
     <nav class="navbar">
 
@@ -110,11 +112,14 @@ if (!isset($_SESSION['user'])) {
     </nav>
     <nav>
         <ul class="myDIV">
-            <li><a class="profile" href="profile.php">Profile</a></li>
-            <li><a class="logout" href="logout.php">Logout</a></li>
+            <h1 id="titelinstellingen">Instellingen</h1>
+            <li><a class="profile" href="profile.php">Profiel bewerken</a></li>
+            <li><a class="passEdit" href="passEdit.php">Wachtwoord wijzigen</a></li>
+            <li><a class="logout" href="logout.php">Uitloggen</a></li>
         </ul>
     </nav>
 </header>
+
 <main>
 
 
@@ -262,10 +267,12 @@ if (!isset($_SESSION['user'])) {
 </div>
 
 </main>
+
 <footer class="bottom">
-    <a href="home.php" class="home2 footer clickable"><img src="img/home.png"></a>
-    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img src="img/new.png"></a>
-    <a href="#" class="hist footer clickable"><img src="img/view.png"></a>
+    <a href="home.php" class="home2 footer clickable"><img alt="home icon" id="homeIcon" src="img/home.png"></a>
+    <a href="mood.php?id=$userID" class="circle footer2 clickable"><img alt="plus icon" id="plusIcon" src="img/new.png"></a>
+    <a href="#" class="hist footer clickable"><img alt="beker icon" id="bekerIcon" src="img/view.png"></a>
 </footer>
+
 </body>
 </html>

@@ -41,12 +41,9 @@ html, body{
 }
 
 .circle img{
-    max-width: 100%;
-    width: auto;
-    max-height: 75%;
-    height: auto;
-    margin-left: 12%;
-    margin-top: 10%;
+    display: block;
+    margin: auto;
+    margin-top: 17px;
 }
 
 .hist img{
@@ -59,15 +56,16 @@ html, body{
 }
 
 .logo{
-    width: 10%;
-    height: 10%;
-    margin-left: 10px;
+    width: 50px;
+    margin-top:5px;
+    margin-left:25px;
+    position: absolute;
 }
 
 .navbar{
-
+    width: 100%;
     margin-top: 2%;
-
+    height: 30px;
     /*flex-direction: row;
     justify-content: space-between;*/
 }
@@ -122,31 +120,30 @@ header{
     width:50%;
 }
 
-
 .menu{
+    color: #ffffff;
     display: inline-block;
     cursor: pointer;
-    margin-left: 70%;
-    margin-top: 5px;
+    margin-left: 80%;
+    margin-top:10px;
 }
 
 .bar1, .bar3{
-    width: 35px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
+    width: 45px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 8px 0;
     transition: 0.4s;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .bar2{
     width: 25px;
-    height: 5px;
-
-    background-color: #333;
-    margin: 6px 10px 0;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 8px 20px 0;
     transition: 0.4s;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* Rotate first bar */
@@ -156,14 +153,15 @@ header{
 
 .circle{
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 20%;
+    height: 75px;
+    margin: auto;
     background-color: #ffd074;
-    border: 5px solid white;
-    left: 50%;
-    margin-left: -50px;
-    position: absolute;
+    border: 3px solid white;
     bottom: 0;
+    position: absolute;
+    margin-left: 40%;
+    margin-right: 40%;
 }
 
 /* Fade out the second bar */
@@ -177,9 +175,35 @@ header{
 }
 
 .myDIV{
-    text-align: center;
-
+    background-color: #f9f8f4 ;
+    height: 90vh;
 }
+
+#titelinstellingen{
+    font-family: 'Variane Script';
+    font-size: 30px;
+    color: #ffd074;
+    letter-spacing: 1px;
+    padding: 30px 0px 15px 0px;
+    margin: 0px 50px;
+    border-bottom: 2px solid #ed4850;
+}
+
+.profile, .logout, .passEdit{
+    font-size: 18px;
+    margin: 0px 50px;
+    color: #777777;
+    padding-top: 10px;
+    line-height: 50px;
+}
+
+.logout{
+    border-top: 2px solid #ed4850;
+    width: 275px;
+    font-weight: bold;
+    padding-right: 190px;
+}
+
 
 .filter{
    position: fixed;
@@ -197,23 +221,28 @@ header{
 }
 
 .F1, .F2, .F3, .F4, .F5{
-    border: none;
-    color: snow;
-    padding: 15px 15px 15px 15px;
+    border: 3px solid #f9F8F4;
+    color: #f9F8F4;
+    height: 60px;
+    width: 70px;
+    padding: 5px;
 }
 
-.F2, .F3, .F4{
-    margin-left: 2px;
-    margin-right: 2px;
+.F2{
+    background-color: #ffd074;
+    font-size: 15px;
 }
 
-.F2, .F3, .F4, .F5 {
+
+
+.F3, .F4, .F5 {
     background-color: #f9ddaa;
 }
 
 .F1{
     background-color: #DB0000;
     border-radius: 50px 0px 0px 50px;
+    font-size: 15px;
 }
 
 .F5{
@@ -264,16 +293,6 @@ header{
 
 }
 
-.edit{
-    margin-top: 5%;
-    margin-left: 5%;
-
-}
-
-.usernameEdit{
-    margin-top: 20px;
-}
-
 .hidden{
     display: none;
 }
@@ -301,12 +320,9 @@ header{
     position:absolute; bottom:8px; left:10px; width:15px; height:15px;
 }
 
-.info{
-    margin-left: 45%;
-}
-
 .passEdit{
-    margin-bottom: 10%;
+    border: none;
+    background-color: #f9F8F4;
 }
 
 .posts{
@@ -394,11 +410,18 @@ header{
 #placeholder{
     height: 13em;
     width: 13em;
-    /*
-    display: block;
-    left: 50%;*/
     margin-top: 75px;
     margin-bottom: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#placeholderProfile{
+    height: 11em;
+    width: 11em;
+    margin-top: 25px;
+    margin-bottom: 25px;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -423,6 +446,16 @@ header{
     background-color: #f9f8f4;
 }
 
+#bestandProfile{
+    font-size: 20px;
+    color: #ed4850;
+    margin: auto;
+    margin-top:-10px;
+    display: block;
+    border: none;
+    background-color: #f9f8f4;
+}
+
 #input_container{
     margin: auto;
     display: block;
@@ -437,12 +470,14 @@ header{
 #input_img{
     width: 15px;
 }
+
 #password.form-control{
     width: 210px;
 }
 
 #username.form-control{
     width: 210px;
+    margin-top: 6%;
 }
 
 #email.form-control{
@@ -480,4 +515,49 @@ a{
 label{
     display: block;
     margin: auto;
+}
+
+.userinfo{
+    margin-top:10%;
+}
+
+#profielbewerken{
+    font-family: 'Variane Script';
+    font-size: 30px;
+    color: #ffd074;
+    letter-spacing: 1px;
+    padding: 30px 0px 15px 0px;
+    margin: 0px 50px;
+    border-bottom: 2px solid #ed4850;
+    width: 275px;
+}
+
+#buttonbewerken{
+    border-radius: 120px;
+    width: 210px;
+    height: 50px;
+    border: none;
+    background-color: #ed4850;
+    color: #ffffff;
+    font-size: 30px;
+    font-family: 'Variane Script';
+    letter-spacing: 1px;
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+}
+
+#homeIcon{
+    width: 15%;
+    margin-top: 5%;
+}
+
+#bekerIcon{
+    width: 20%;
+    margin-top: 7%;
+}
+
+#plusIcon{
+    width: 50%;
+    height: 50%;
 }
