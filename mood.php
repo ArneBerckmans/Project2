@@ -151,7 +151,7 @@ if (isset($_POST['ready'])) {
 
     <form class="input" action="mood.php" method="post">
         <input id="hiddenValue" type="hidden" class="data" name="mood" value="">
-        <button class="moodReady" type="submit" name="ready">Ready</button>
+        <button class="moodReady" type="submit" name="ready" id="readybutton">Ready</button>
     </form>
 </main>
 <footer class="bottom">
