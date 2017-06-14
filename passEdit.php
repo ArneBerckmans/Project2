@@ -59,6 +59,13 @@ $userID = $currentUser['userID'];
 </header>
 <main class="profile2">
 
+    <h1 id="titelwachtwoordwijzigen">Wachtwoord wijzigen</h1>
+
+    <div id="input_container">
+        <label for="password"></label></br>
+        <input type="password" name="password" id="password" class="passEdit" placeholder="Wachtwoord wijzigen">
+        <img src="img/SlotOpenIcon.png" alt="slot icon" id="input_img">
+    </div>
 
 
 </main>
