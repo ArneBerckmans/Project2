@@ -103,7 +103,7 @@ if (!isset($_SESSION['user'])) {
 <header>
     <nav class="navbar">
 
-     <img src="img/logo.png" class="logo" alt="logo">
+        <a href="home.php"><img src="img/logo.png" class="logo" alt="logo"></a>
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -261,8 +261,6 @@ if (!isset($_SESSION['user'])) {
 </div>
 
     <?php endwhile; ?>
-
-
 
 </div>
 

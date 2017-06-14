@@ -40,7 +40,7 @@ $userID = $currentUser['userID'];
         <li><a class="profile" href="profile.php">Profile</a></li>
         <li><a class="logout" href="logout.php">Logout</a></li>
     </ul>-->
-     <img src="#" alt="logo">
+        <a href="home.php"><img src="img/logo.png" class="logo" alt="logo"></a>
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -49,8 +49,10 @@ $userID = $currentUser['userID'];
     </nav>
     <nav>
         <ul class="myDIV">
-            <li><a class="profile" href="profile.php">Profile</a></li>
-            <li><a class="logout" href="logout.php">Logout</a></li>
+            <h1 id="titelinstellingen">Instellingen</h1>
+            <li><a class="profile" href="profile.php">Profiel bewerken</a></li>
+            <li><a class="passEdit" href="passEdit.php">Wachtwoord wijzigen</a></li>
+            <li><a class="logout" href="logout.php">Uitloggen</a></li>
         </ul>
     </nav>
 </header>

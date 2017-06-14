@@ -74,7 +74,7 @@ html, body{
     display: block;
     border-style: solid;
     border-width: 3px;
-    border-color: #6eea8b;
+    border-color: #ffd074;
     margin-bottom: 10px;
     border-radius: 30px;
     padding-right: 80px;
@@ -262,9 +262,10 @@ header{
 }
 
 .username{
-    float: right;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 17px;
+    display: inline;
 }
 
 .userimg{
@@ -273,7 +274,7 @@ header{
 }
 
 .usernames{
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .actual{
@@ -298,14 +299,15 @@ header{
 }
 
 #input_container {
-    position:relative; padding:0; margin:0; }
+    position:relative; padding:0; margin:0;
+}
 
 #username {
     height:30px; margin:0; padding-left: 30px;
 }
 
 #userName{
-    height:30px; margin:0; padding-left: 30px;
+    height:30px; margin:0; padding-left: 30px; margin-bottom:5px;
 }
 
 #email{
@@ -313,7 +315,7 @@ header{
 }
 
 #password{
-    height:30px; margin:0; padding-left: 30px;
+    height:30px; margin:0; padding-left: 30px; margin-bottom:5px;
 }
 
 #input_img {
@@ -326,11 +328,11 @@ header{
 }
 
 .posts{
-  display: block;
     position: absolute;
-    margin-left: 25%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
     margin-top: 50%;
-
 }
 
 .imageContainer2{
@@ -432,7 +434,7 @@ header{
     background-color: #f9f8f4;
     border: none;
     box-shadow: none;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 #bestand{
@@ -510,6 +512,7 @@ a{
 
 #password{
     background-color: #f9f8f4;
+    padding-top:15px;
 }
 
 label{
@@ -560,4 +563,25 @@ label{
 #plusIcon{
     width: 50%;
     height: 50%;
+}
+
+.alert{
+    color: #ed4850;
+    font-weight: bold;
+    font-size: 17px;
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.profile:active, .passEdit:active{
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+}
+
+.logout:active{
+    text-decoration: none;
+    font-weight: bold;
+    color: #ed4850;
 }

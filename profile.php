@@ -134,7 +134,7 @@ if (!empty($_POST)){
 <header>
     <nav class="navbar">
 
-        <img src="img/logo.png" class="logo" alt="logo">
+        <a href="home.php"><img src="img/logo.png" class="logo" alt="logo"></a>
         <div class="menu" onclick="myFunction(this)">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -143,8 +143,10 @@ if (!empty($_POST)){
     </nav>
     <nav>
         <ul class="myDIV">
-            <li><a class="profile" href="home.php">Home</a></li>
-            <li><a class="logout" href="logout.php">Logout</a></li>
+            <h1 id="titelinstellingen">Instellingen</h1>
+            <li><a class="profile" href="profile.php">Profiel bewerken</a></li>
+            <li><a class="passEdit" href="passEdit.php">Wachtwoord wijzigen</a></li>
+            <li><a class="logout" href="logout.php">Uitloggen</a></li>
         </ul>
     </nav>
 </header>
@@ -166,17 +168,15 @@ if (!empty($_POST)){
 
         <div class="usernameEdit" id="input_container">
             <label for="userName"></label></br>
-            <input type="text" name="userName" id="userName" class="passEdit" placeholder="E-mailadres wijzigen" value="<?php echo htmlspecialchars($currentUser['username']); ?>">
-            <img src="img/GebruikersnaamIcon.png" id="input_img">
+            <input type="text" name="userName" id="userName" class="passEdit" placeholder="Gebruikersnaam wijzigen" value="<?php echo htmlspecialchars($currentUser['username']); ?>">
+            <img src="img/GebruikersnaamIcon.png" alt="gebruiker icon" id="input_img">
         </div>
 
         <div id="input_container">
             <label for="password"></label></br>
-            <input type="password" name="password" id="password" class="passEdit" placeholder="Gebruikersnaam wijzigen">
-            <img src="img/SlotOpenIcon.png" id="input_img">
+            <input type="password" name="password" id="password" class="passEdit" placeholder="E-mailadres wijzigen">
+            <img src="img/MailIcon.png" alt="mail icon" id="input_img">
         </div>
-
-
 
         <input name="editProfile" class="save" type="submit" value="Bewerken" id="buttonbewerken">
 
